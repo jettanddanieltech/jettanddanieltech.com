@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jett & Daniel Tech | PC & Web Solutions</title>
+    <style>
+        :root {
+            --neon-blue: #33BBFF;
+            --neon-green: #00FF88;
+            --bg-dark: #0a0a0a;
+            --card-bg: #161616;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: white;
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header Section */
+        header {
+            height: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            border-bottom: 2px solid var(--neon-blue);
+            background: radial-gradient(circle, #1a1a1a 0%, #0a0a0a 100%);
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: clamp(2rem, 8vw, 4rem);
+            color: var(--neon-blue);
+            margin-bottom: 0;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            text-shadow: 0 0 20px rgba(51, 187, 255, 0.6);
+        }
+
+        .tagline {
+            color: var(--neon-green);
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: clamp(0.7rem, 2vw, 1.2rem);
+        }
+
+        /* Services Section */
+        .container {
+            max-width: 1000px;
+            margin: -50px auto 50px auto;
+            padding: 0 20px;
+        }
+
+        .services {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid #333;
+            padding: 30px;
+            border-radius: 12px;
+            transition: 0.4s;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .card:hover {
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 25px rgba(51, 187, 255, 0.2);
+            transform: translateY(-10px);
+        }
+
+        .card h3 {
+            color: var(--neon-blue);
+            margin-top: 0;
+            font-size: 1.5rem;
+            text-transform: uppercase;
+        }
+
+        .card p {
+            color: #ccc;
+        }
+
+        .card ul {
+            list-style: none;
+            padding: 0;
+            color: var(--neon-green);
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        .card li {
+            margin-bottom: 10px;
+        }
+
+        .card li::before {
+            content: "> ";
+            color: var(--neon-blue);
+        }
+
+        /* Action Button */
+        .cta-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 15px 45px;
+            background: transparent;
+            color: var(--neon-green);
+            border: 2px solid var(--neon-green);
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            border-radius: 5px;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .cta-btn:hover {
+            background: var(--neon-green);
+            color: black;
+            box-shadow: 0 0 25px var(--neon-green);
+        }
+
+        footer {
+            text-align: center;
+            padding: 60px 20px;
+            font-size: 0.7rem;
+            color: #444;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>JETT & DANIEL</h1>
+        <p class="tagline">"Building the Future, One Part at a Time."</p>
+        <a href="mailto:contact@jettanddaniel.tech" class="cta-btn">Request a Quote</a>
+    </header>
+
+    <div class="container">
+        <div class="services">
+            <div class="card">
+                <h3>Hardware & Systems</h3>
+                <p>High-performance PC builds and maintenance by Daniel. We fix the slow and build the fast.</p>
+                <ul>
+                    <li>Custom Gaming Builds</li>
+                    <li>Hardware Diagnostics</li>
+                    <li>Professional PC Cleaning</li>
+                    <li>Thermal Paste Service</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3>Software & Design</h3>
+                <p>Clean code and responsive web design by Jett. Bringing your business online with modern tech.</p>
+                <ul>
+                    <li>Custom Website Design</li>
+                    <li>Portfolio Creation</li>
+                    <li>Hosting & SEO</li>
+                    <li>Software Troubleshooting</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        VER: 2.0 // STATUS: STABLE // &copy; 2026 JETT & DANIEL TECH
+    </footer>
+
+</body>
+</html>
