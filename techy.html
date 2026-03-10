@@ -72,4 +72,78 @@
             height: 400px;
             padding: 20px;
             overflow-y: auto;
-            text-align:
+            text-align: left;
+        }
+
+        .bot { color: var(--neon-blue); margin-bottom: 10px; }
+        .user { color: var(--neon-green); margin-bottom: 10px; }
+
+        .t-input {
+            display: flex;
+            padding: 15px;
+            background: #000;
+            border-top: 1px solid #333;
+        }
+
+        #user-in {
+            background: transparent;
+            border: none;
+            color: var(--neon-green);
+            flex-grow: 1;
+            outline: none;
+            font-family: 'Courier New', monospace;
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="hardware.html">Hardware</a>
+        <a href="software.html">Software</a>
+        <a href="dictionary.html">Dictionary</a>
+        <a href="techy.html">Techy AI</a>
+    </nav>
+
+    <div class="terminal">
+        <div class="t-header">TECHY_CORE_v2.1 // STATUS: ONLINE</div>
+        <div id="logs">
+            <div class="bot">>> SYSTEM INITIALIZED...</div>
+            <div class="bot">>> Hello. I am Techy. I know everything about Jett & Daniel Tech.</div>
+            <div class="bot">>> Ask me about Jett, Daniel, or our Services.</div>
+        </div>
+        <div class="t-input">
+            <span style="color: var(--neon-green); margin-right: 10px;">></span>
+            <input type="text" id="user-in" autofocus onkeypress="if(event.key==='Enter') talk()">
+        </div>
+    </div>
+
+    <script>
+        function talk() {
+            const input = document.getElementById('user-in');
+            const logs = document.getElementById('logs');
+            const val = input.value.toLowerCase();
+            if (!val) return;
+
+            logs.innerHTML += `<div class="user">> ${input.value}</div>`;
+
+            let reply = "I don't recognize that command. Type 'help' for info.";
+
+            if (val.includes("jett")) reply = "Jett is the Software Lead. He handles Web Design, SEO, and Coding.";
+            if (val.includes("daniel")) reply = "Daniel is the Hardware Lead. He handles PC Builds, Repairs, and Cooling.";
+            if (val.includes("help")) reply = "Try asking about: Jett, Daniel, Hardware, or Software.";
+            if (val.includes("hi") || val.includes("hello")) reply = "Greeting received. How can I help your tech journey?";
+            if (val.includes("hardware")) reply = "Daniel builds custom PCs and fixes hardware. Visit the Hardware page for details.";
+            if (val.includes("software")) reply = "Jett builds websites and solves code bugs. Visit the Software page for details.";
+
+            setTimeout(() => {
+                logs.innerHTML += `<div class="bot">>> ${reply}</div>`;
+                logs.scrollTop = logs.scrollHeight;
+            }, 300);
+
+            input.value = "";
+        }
+    </script>
+</body>
+</html>
