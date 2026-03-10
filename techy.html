@@ -1,103 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>J&D | Techy AI</title>
+    <title>Techy AI</title>
     <style>
-        :root {
-            --neon-blue: #33BBFF;
-            --neon-green: #00FF88;
-            --bg-dark: #0a0a0a;
-        }
-
-        body {
-            background-color: var(--bg-dark);
-            color: #ffffff !important; /* Forces text to be white */
-            font-family: 'Courier New', monospace;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-        }
-
-        /* Nav Bar */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(10, 10, 10, 0.95);
-            border-bottom: 1px solid var(--neon-blue);
-            display: flex;
-            justify-content: center;
-            padding: 15px 0;
-            z-index: 1000;
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin: 0 15px;
-            font-size: 0.8rem;
-            font-weight: bold;
-            text-transform: uppercase;
-            font-family: sans-serif;
-        }
-
-        /* Terminal Window */
-        .terminal {
-            width: 90%;
-            max-width: 800px;
-            margin-top: 100px;
-            background: #111;
-            border: 2px solid #333;
-            border-radius: 10px;
-            display: flex;
-            flex-direction: column;
-            box-shadow: 0 0 20px rgba(0,0,0,1);
-        }
-
-        .t-header {
-            background: #222;
-            padding: 10px;
-            color: var(--neon-blue);
-            font-size: 0.8rem;
-            border-bottom: 1px solid #333;
-            font-family: sans-serif;
-        }
-
-        #logs {
-            height: 400px;
-            padding: 20px;
-            overflow-y: auto;
-            text-align: left;
-        }
-
-        .bot { color: var(--neon-blue); margin-bottom: 10px; }
-        .user { color: var(--neon-green); margin-bottom: 10px; }
-
-        .t-input {
-            display: flex;
-            padding: 15px;
-            background: #000;
-            border-top: 1px solid #333;
-        }
-
-        #user-in {
-            background: transparent;
-            border: none;
-            color: var(--neon-green);
-            flex-grow: 1;
-            outline: none;
-            font-family: 'Courier New', monospace;
-            font-size: 1rem;
-        }
+        body { background-color: #0a0a0a; color: #00FF88; font-family: monospace; margin: 0; padding: 20px; }
+        nav { margin-bottom: 50px; border-bottom: 1px solid #33BBFF; padding: 10px; text-align: center; }
+        nav a { color: white; margin: 0 15px; text-decoration: none; font-weight: bold; }
+        .chat-box { border: 1px solid #33BBFF; height: 300px; padding: 10px; overflow-y: scroll; margin-bottom: 10px; }
+        input { width: 90%; background: #111; border: 1px solid #00FF88; color: #00FF88; padding: 10px; outline: none; }
+        .bot { color: #33BBFF; }
     </style>
 </head>
 <body>
-
     <nav>
         <a href="index.html">Home</a>
         <a href="hardware.html">Hardware</a>
@@ -106,43 +20,31 @@
         <a href="techy.html">Techy AI</a>
     </nav>
 
-    <div class="terminal">
-        <div class="t-header">TECHY_CORE_v2.1 // STATUS: ONLINE</div>
-        <div id="logs">
-            <div class="bot">>> SYSTEM INITIALIZED...</div>
-            <div class="bot">>> Hello. I am Techy. I know everything about Jett & Daniel Tech.</div>
-            <div class="bot">>> Ask me about Jett, Daniel, or our Services.</div>
-        </div>
-        <div class="t-input">
-            <span style="color: var(--neon-green); margin-right: 10px;">></span>
-            <input type="text" id="user-in" autofocus onkeypress="if(event.key==='Enter') talk()">
-        </div>
+    <h2>TECHY AI v2.2</h2>
+    <div class="chat-box" id="logs">
+        <div class="bot">>> System Ready. Ask about Jett, Daniel, or Services.</div>
     </div>
+    <input type="text" id="in" placeholder="Type here..." onkeypress="if(event.key==='Enter') chat()">
 
     <script>
-        function talk() {
-            const input = document.getElementById('user-in');
-            const logs = document.getElementById('logs');
-            const val = input.value.toLowerCase();
-            if (!val) return;
+        function chat() {
+            var i = document.getElementById('in');
+            var l = document.getElementById('logs');
+            var v = i.value.toLowerCase();
+            if(!v) return;
 
-            logs.innerHTML += `<div class="user">> ${input.value}</div>`;
+            l.innerHTML += "<div>> " + i.value + "</div>";
+            var r = "I am still learning. Try asking for Jett or Daniel.";
+            
+            if(v.includes("jett")) r = "Jett handles the Software and Web Design side of the business.";
+            if(v.includes("daniel")) r = "Daniel is the Hardware expert for PC builds and repairs.";
+            if(v.includes("hi") || v.includes("hello")) r = "Hello! System is online.";
 
-            let reply = "I don't recognize that command. Type 'help' for info.";
-
-            if (val.includes("jett")) reply = "Jett is the Software Lead. He handles Web Design, SEO, and Coding.";
-            if (val.includes("daniel")) reply = "Daniel is the Hardware Lead. He handles PC Builds, Repairs, and Cooling.";
-            if (val.includes("help")) reply = "Try asking about: Jett, Daniel, Hardware, or Software.";
-            if (val.includes("hi") || val.includes("hello")) reply = "Greeting received. How can I help your tech journey?";
-            if (val.includes("hardware")) reply = "Daniel builds custom PCs and fixes hardware. Visit the Hardware page for details.";
-            if (val.includes("software")) reply = "Jett builds websites and solves code bugs. Visit the Software page for details.";
-
-            setTimeout(() => {
-                logs.innerHTML += `<div class="bot">>> ${reply}</div>`;
-                logs.scrollTop = logs.scrollHeight;
-            }, 300);
-
-            input.value = "";
+            setTimeout(function() {
+                l.innerHTML += "<div class='bot'>>> " + r + "</div>";
+                l.scrollTop = l.scrollHeight;
+            }, 200);
+            i.value = "";
         }
     </script>
 </body>
