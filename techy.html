@@ -1,8 +1,86 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J&D | Techy AI</title>
+    <style>
+        :root { --neon-blue: #33BBFF; --neon-green: #00FF88; --bg-dark: #0a0a0a; }
+        body { background-color: var(--bg-dark); color: white; font-family: 'Segoe UI', sans-serif; margin: 0; padding-top: 100px; text-align: center; }
+        nav { position: fixed; top: 0; width: 100%; background: rgba(10, 10, 10, 0.95); border-bottom: 1px solid var(--neon-blue); display: flex; justify-content: center; padding: 15px 0; }
+        nav a { color: white; text-decoration: none; margin: 0 15px; font-size: 0.8rem; font-weight: bold; text-transform: uppercase; }
+        
+        .chat-container { max-width: 600px; margin: 20px auto; background: #111; border: 1px solid var(--neon-green); border-radius: 10px; overflow: hidden; }
+        #chat-box { height: 300px; overflow-y: auto; padding: 20px; text-align: left; display: flex; flex-direction: column; gap: 10px; }
+        .msg { padding: 10px 15px; border-radius: 5px; max-width: 80%; line-height: 1.4; }
+        .user-msg { background: #222; align-self: flex-end; border-right: 3px solid var(--neon-blue); }
+        .ai-msg { background: #1a1a1a; align-self: flex-start; border-left: 3px solid var(--neon-green); color: var(--neon-green); font-family: monospace; }
+        
+        .input-area { display: flex; border-top: 1px solid #333; }
+        #user-input { flex: 1; padding: 15px; background: transparent; border: none; color: white; outline: none; }
+        #send-btn { padding: 15px 25px; background: var(--neon-green); color: black; font-weight: bold; border: none; cursor: pointer; }
+    </style>
+</head>
 <body>
-    <h1>IF YOU CAN SEE THIS, THE FILE IS WORKING</h1>
-    <p>This is a test to kill the black screen.</p>
-    <a href="index.html">Go Back Home</a>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="hardware.html">Hardware</a>
+        <a href="software.html">Software</a>
+        <a href="dictionary.html">Dictionary</a>
+        <a href="techy.html">Techy AI</a>
+    </nav>
+
+    <h1 style="color:var(--neon-green)">TECHY AI</h1>
+    <p>Ask me about J&D Tech, hardware, or software.</p>
+
+    <div class="chat-container">
+        <div id="chat-box">
+            <div class="msg ai-msg">SYSTEM READY. How can I help you navigate J&D Tech today?</div>
+        </div>
+        <div class="input-area">
+            <input type="text" id="user-input" placeholder="Ask something..." onkeypress="if(event.key === 'Enter') sendMessage()">
+            <button id="send-btn" onclick="sendMessage()">SEND</button>
+        </div>
+    </div>
+
+    <script>
+        const siteData = {
+            "jett": "Jett is our lead software developer. He handles web apps, Python automation, and UI/UX design.",
+            "daniel": "Daniel is our hardware expert. He runs the Hardware Lab, specializing in custom PC builds and repairs.",
+            "hardware": "We offer custom PC builds, deep cleaning, thermal paste service, and hardware diagnostics.",
+            "software": "Our studio builds custom web apps, handles database management, and provides coding solutions.",
+            "about": "J&D Tech is a futuristic hub for hardware repairs and custom software development.",
+            "contact": "You can reach us through our hardware or software service pages!",
+            "help": "I can tell you about Jett (Software), Daniel (Hardware), or define tech terms for you."
+        };
+
+        function sendMessage() {
+            const input = document.getElementById('user-input');
+            const chatBox = document.getElementById('chat-box');
+            const query = input.value.toLowerCase();
+            if (!query) return;
+
+            // Add user message
+            chatBox.innerHTML += `<div class="msg user-msg">${input.value}</div>`;
+            
+            // AI logic
+            let response = "I'm not sure about that specific detail. Try asking about 'Jett', 'Daniel', 'Hardware', or 'Software'!";
+            
+            for (let key in siteData) {
+                if (query.includes(key)) {
+                    response = siteData[key];
+                    break;
+                }
+            }
+
+            // Simulate "typing" delay
+            setTimeout(() => {
+                chatBox.innerHTML += `<div class="msg ai-msg">> ${response}</div>`;
+                chatBox.scrollTop = chatBox.scrollHeight;
+            }, 500);
+
+            input.value = '';
+        }
+    </script>
 </body>
 </html>
