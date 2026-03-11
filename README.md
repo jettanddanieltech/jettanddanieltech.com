@@ -1,1 +1,1 @@
-# jettanddanieltech.github.io
+# jettanddanieltech.com
