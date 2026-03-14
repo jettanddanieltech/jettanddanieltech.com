@@ -2,60 +2,30 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>J&D | DICTIONARY</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Dictionary</title>
     <style>
-        body { background:#000; color:#00FF88; font-family:monospace; padding:20px; display:flex; flex-direction:column; align-items:center; }
-        nav { width:100%; border-bottom:2px solid #33BBFF; padding:15px; text-align:center; background:#0a0a0a; margin-bottom:30px; }
-        nav a { color:#33BBFF; margin:0 15px; text-decoration:none; font-weight:bold; transition:0.3s; }
-        nav a:hover { color:#00FF88; text-shadow:0 0 8px #00FF88; }
-        .active { color:#00FF88 !important; border-bottom:2px solid #00FF88; padding-bottom:5px; }
-        .container { border:1px solid #222; padding:20px; width:95%; max-width:800px; background:#050505; border-left:4px solid #33BBFF; }
-        h1 { color:#33BBFF; }
-        input { width:100%; padding:15px; background:#111; border:1px solid #33BBFF; color:#00FF88; font-family:monospace; outline:none; margin-bottom:20px; box-sizing:border-box; }
-        #results { height:400px; overflow-y:auto; text-align:left; }
-        .entry { margin-bottom:15px; padding:10px; border-bottom:1px solid #111; }
-        .word { color:#33BBFF; font-weight:bold; text-transform:uppercase; }
-        #results::-webkit-scrollbar { width:5px; }
-        #results::-webkit-scrollbar-thumb { background:#33BBFF; }
+        :root { --neon: #33BBFF; --bg: #0f0f0f; }
+        body { background: var(--bg); color: white; font-family: sans-serif; margin: 0; padding-top: 80px; }
+        nav { background: rgba(0,0,0,0.9); padding: 20px; position: fixed; top: 0; width: 100%; border-bottom: 2px solid var(--neon); text-align: center;}
+        nav a { color: white; text-decoration: none; margin: 0 15px; font-weight: bold; }
+        .container { padding: 40px; max-width: 800px; margin: auto; text-align: center;}
+        input { padding: 10px; width: 80%; border-radius: 5px; border: 1px solid var(--neon); background: #222; color: white; }
     </style>
 </head>
 <body>
     <nav>
-        <a href="./index.html">HOME</a>
-        <a href="./hardware.html">HARDWARE</a>
-        <a href="./software.html">SOFTWARE</a>
-        <a href="./dictionary.html" class="active">DICTIONARY</a>
-        <a href="./techy.html">TECHY AI</a>
+        <a href="index.html">Home</a>
+        <a href="hardware.html">Hardware</a>
+        <a href="software.html">Software</a>
+        <a href="tutorials.html">Tutorials</a>
+        <a href="dictionary.html">Dictionary</a>
+        <a href="techy.html">Techy AI</a>
     </nav>
     <div class="container">
-        <h1>TECH_DATABASE_V3</h1>
-        <input type="text" id="search" placeholder="SEARCH TERM..." onkeyup="searchDict()">
+        <h1 style="color: var(--neon);">Tech Dictionary</h1>
+        <input type="text" placeholder="Search a tech term...">
         <div id="results"></div>
     </div>
-    <script>
-        const techData = {
-            "ram": "Random Access Memory. Fast temporary storage for current tasks.",
-            "cpu": "Central Processing Unit. The brain of the computer.",
-            "gpu": "Graphics Processing Unit. Handles images and gaming.",
-            "ssd": "Solid State Drive. Fast storage with no moving parts.",
-            "html": "HyperText Markup Language. The structure of web pages.",
-            "css": "Cascading Style Sheets. The design and layout of a site.",
-            "javascript": "Programming language for website interactivity.",
-            "ip address": "Unique ID for a device on the internet.",
-            "dns": "Turns website names into IP addresses.",
-            "api": "Rules for software to talk to other software."
-        };
-        function searchDict() {
-            const query = document.getElementById('search').value.toLowerCase();
-            const resultsDiv = document.getElementById('results');
-            resultsDiv.innerHTML = "";
-            Object.keys(techData).sort().forEach(word => {
-                if (word.includes(query)) {
-                    resultsDiv.innerHTML += `<div class="entry"><div class="word">> ${word}</div><div class="def">${techData[word]}</div></div>`;
-                }
-            });
-        }
-        searchDict();
-    </script>
 </body>
 </html>
