@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TECHTORIALS // ACCESS_KEY_v1</title>
+    <style>
+        body { 
+            background: #111; 
+            display: flex; 
+            flex-direction: column;
+            gap: 50px; 
+            justify-content: center; 
+            align-items: center;
+            padding: 50px; 
+            font-family: 'Courier New', monospace; 
+        }
+        
+        /* CARD DIMENSIONS (Standard 3.5" x 2" Ratio) */
+        .card {
+            width: 500px;
+            height: 280px;
+            background: #000;
+            border: 2px solid #33BBFF;
+            border-radius: 15px;
+            position: relative;
+            padding: 30px;
+            box-sizing: border-box;
+            box-shadow: 0 0 30px rgba(51, 187, 255, 0.2);
+            overflow: hidden;
+        }
+
+        /* --- FRONT DESIGN --- */
+        .logo-container {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .tech-text {
+            color: #33BBFF;
+            font-size: 70px;
+            font-weight: 900;
+            letter-spacing: -2px;
+            line-height: 0.7;
+            transform: skewX(-15deg);
+            margin-bottom: 5px;
+        }
+
+        .torials-text {
+            color: #33BBFF;
+            font-size: 38px;
+            font-weight: 300;
+            letter-spacing: 12px;
+            transform: skewX(-15deg);
+            margin-left: 5px;
+        }
+
+        .smart-chip {
+            width: 60px;
+            height: 45px;
+            background: linear-gradient(135deg, #33BBFF 0%, #0055FF 100%);
+            border-radius: 8px;
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        /* --- BACK DESIGN --- */
+        .back { border-color: #00FF41; }
+        
+        .mag-stripe {
+            background: #111;
+            height: 55px;
+            width: 100%;
+            position: absolute;
+            top: 35px;
+            left: 0;
+        }
+
+        .qr-area {
+            margin-top: 85px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .qr-box {
+            width: 110px;
+            height: 110px;
+            background: #fff;
+            padding: 8px;
+            border-radius: 5px;
+        }
+
+        .qr-box img { width: 110px; height: 110px; }
+
+        .terminal-text {
+            color: #00FF41;
+            font-size: 13px;
+            line-height: 1.5;
+            text-transform: uppercase;
+        }
+
+        .footer-id {
+            position: absolute;
+            bottom: 20px;
+            left: 30px;
+            color: #333;
+            font-size: 9px;
+            letter-spacing: 3px;
+        }
+
+        .label { color: #555; font-size: 10px; margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+
+    <div class="label">FRONT_OF_CARD (MATTE_BLACK_FINISH)</div>
+    <div class="card">
+        <div class="smart-chip"></div>
+        <div class="logo-container">
+            <div class="tech-text">TECH</div>
+            <div class="torials-text">TORIALS</div>
+        </div>
+    </div>
+
+    <div class="label">BACK_OF_CARD (TERMINAL_UI)</div>
+    <div class="card back">
+        <div class="mag-stripe"></div>
+        <div class="qr-area">
+            <div class="terminal-text">
+                > SECURITY_STATUS: <span style="color:#fff;">VERIFIED</span><br>
+                > ACCESS_LEVEL: <span style="color:#fff;">ADMIN</span><br>
+                > INITIALIZE_REPAIR_LOGS...<br>
+                <span style="color:#33BBFF;">jettanddaniel.github.io/hardware</span>
+            </div>
+            <div class="qr-box">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=110x110&data=https://jettanddaniel.github.io/hardware.html" alt="QR Code">
+            </div>
+        </div>
+        <div class="footer-id">ENCRYPTED_KEY_ID: JD-9920-X1</div>
+    </div>
+
+</body>
+</html>
