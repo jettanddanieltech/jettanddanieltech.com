@@ -21,7 +21,7 @@
             min-height: 100vh;
         }
 
-        /* Side Info Bar */
+        /* Sidebar Status */
         .status-bar {
             width: 220px;
             background: #050505;
@@ -46,7 +46,7 @@
 
         h1 { color: var(--blue); margin: 0; letter-spacing: 4px; transform: skewX(-10deg); }
 
-        /* Tutorial Grid */
+        /* Grid System */
         .tutorial-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -58,13 +58,13 @@
             background: var(--gray);
             border: 1px solid #111;
             padding: 20px;
-            position: relative;
             transition: 0.3s ease;
         }
 
         .protocol-card:hover {
             border-color: var(--green);
             background: #0d0d0d;
+            box-shadow: 0 0 15px rgba(0, 255, 65, 0.1);
         }
 
         .id-tag {
@@ -89,7 +89,6 @@
 
         .btn-open {
             display: inline-block;
-            margin-top: 10px;
             padding: 8px 12px;
             border: 1px solid var(--blue);
             color: var(--blue);
@@ -104,40 +103,36 @@
         }
 
         .nav-back {
-            position: absolute;
-            top: 40px;
-            right: 40px;
+            position: fixed;
+            top: 20px;
+            right: 20px;
             color: var(--blue);
             text-decoration: none;
             font-size: 12px;
             border: 1px solid var(--blue);
             padding: 5px 15px;
-        }
-
-        @media (max-width: 800px) {
-            body { flex-direction: column; }
-            .status-bar { width: 100%; border-right: none; border-bottom: 1px solid var(--blue); }
+            background: #000;
         }
     </style>
 </head>
 <body>
 
     <div class="status-bar">
-        <p>> HARDWARE_OS_v4.2</p>
+        <p>> REPAIR_OS_v4.2</p>
         <p>> STATUS: <span style="color:var(--green)">CONNECTED</span></p>
-        <p>> ACCESS_LVL: ADMIN</p>
+        <p>> ENCRYPTION: ACTIVE</p>
         <hr style="border:0; border-top:1px solid #222; margin: 20px 0;">
-        <p style="color:#555">ACTIVE_REPAIR_LOGS:</p>
-        <ul style="list-style:none; padding:0; color:var(--green); font-size:10px;">
-            <li>- PHN_BATT_01</li>
-            <li>- PHN_SCRN_02</li>
-            <li>- PC_THERM_03</li>
-            <li>- LPT_RAM_04</li>
-            <li>- PHN_CHRG_05</li>
-            <li>- PC_GPU_06</li>
-            <li>- CONS_JOY_07</li>
-            <li>- LPT_SSD_08</li>
-        </ul>
+        <p style="color:#555">REPAIR_LOG_OVERVIEW:</p>
+        <div style="color:var(--green); font-size:10px; line-height:1.8;">
+            - PHN_BATT_01 [OK]<br>
+            - PHN_SCRN_02 [OK]<br>
+            - PC_THERM_03 [OK]<br>
+            - LPT_RAM_04 [OK]<br>
+            - PHN_CHRG_05 [OK]<br>
+            - PC_GPU_06 [OK]<br>
+            - CONS_JOY_07 [OK]<br>
+            - LPT_SSD_08 [OK]
+        </div>
     </div>
 
     <div class="main-content">
@@ -145,7 +140,7 @@
         
         <div class="header">
             <h1>REPAIR_PROTOCOLS</h1>
-            <p style="color:var(--green)">> TOTAL_TUTORIALS_LOADED: 08</p>
+            <p style="color:var(--green)">> SYSTEM_READY: 08_MODULES_DETECTED</p>
         </div>
 
         <div class="tutorial-grid">
@@ -153,14 +148,43 @@
                 <span class="id-tag">REF: PHN-BATT-01</span>
                 <h3>BATTERY_REPLACEMENT</h3>
                 <div class="difficulty">[MEDIUM_RISK]</div>
-                <p style="font-size: 12px;">Protocol for handling Li-ion thermal risks and adhesive removal.</p>
-                <a href="/tutorials/battery" class="btn-open">ACCESS_FILES</a>
+                <p style="font-size: 12px;">Thermal management and adhesive removal for Li-ion cells.</p>
+                <a href="/tutorials/battery" class="btn-open">ACCESS_LOG</a>
             </div>
 
             <div class="protocol-card">
                 <span class="id-tag">REF: PHN-SCRN-02</span>
                 <h3>DIGITIZER_SWAP</h3>
                 <div class="difficulty">[HIGH_PRECISION]</div>
-                <p style="font-size: 12px;">Full OLED/LCD replacement including sensor transfers.</p>
-                <a href="/tutorials/screen" class="btn-open">ACCESS_FILES</a>
+                <p style="font-size: 12px;">Full OLED/LCD replacement and sensor hardware pairing.</p>
+                <a href="/tutorials/screen" class="btn-open">ACCESS_LOG</a>
             </div>
+
+            <div class="protocol-card">
+                <span class="id-tag">REF: PC-THERM-03</span>
+                <h3>THERMAL_PASTE_REAPP</h3>
+                <div class="difficulty">[LOW_STRESS]</div>
+                <p style="font-size: 12px;">Improving CPU/GPU thermals with fresh interface material.</p>
+                <a href="/tutorials/thermal" class="btn-open">ACCESS_LOG</a>
+            </div>
+
+            <div class="protocol-card">
+                <span class="id-tag">REF: LPT-RAM-04</span>
+                <h3>MEMORY_UPGRADE</h3>
+                <div class="difficulty">[LOW_STRESS]</div>
+                <p style="font-size: 12px;">Upgrading SODIMM modules for improved system multitasking.</p>
+                <a href="/tutorials/ram" class="btn-open">ACCESS_LOG</a>
+            </div>
+
+            <div class="protocol-card">
+                <span class="id-tag">REF: PHN-CHRG-05</span>
+                <h3>PORT_MAINTENANCE</h3>
+                <div class="difficulty">[MEDIUM_RISK]</div>
+                <p style="font-size: 12px;">Debris extraction and charging port hardware replacement.</p>
+                <a href="/tutorials/charge-port" class="btn-open">ACCESS_LOG</a>
+            </div>
+
+            <div class="protocol-card">
+                <span class="id-tag">REF: PC-GPU-06</span>
+                <h3>GPU_COOLING_FIX</h3>
+                <div class="difficulty
