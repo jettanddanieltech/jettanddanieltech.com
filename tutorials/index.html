@@ -2,189 +2,34 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TECHTORIALS // REPAIR_DATABASE</title>
+    <title>TECHTORIALS // REPAIRS</title>
     <style>
-        :root {
-            --bg: #000;
-            --blue: #33BBFF;
-            --green: #00FF41;
-            --gray: #0a0a0a;
-        }
-
-        body {
-            background: var(--bg);
-            color: #ccc;
-            font-family: 'Courier New', monospace;
-            margin: 0;
-            display: flex;
-            min-height: 100vh;
-        }
-
-        /* Sidebar Status */
-        .status-bar {
-            width: 220px;
-            background: #050505;
-            border-right: 1px solid var(--blue);
-            padding: 20px;
-            font-size: 11px;
-            color: var(--blue);
-            flex-shrink: 0;
-        }
-
-        .main-content {
-            flex-grow: 1;
-            padding: 40px;
-            overflow-y: auto;
-        }
-
-        .header {
-            border-bottom: 2px solid var(--blue);
-            margin-bottom: 30px;
-            padding-bottom: 15px;
-        }
-
-        h1 { color: var(--blue); margin: 0; letter-spacing: 4px; transform: skewX(-10deg); }
-
-        /* Grid System */
-        .tutorial-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
-            margin-bottom: 50px;
-        }
-
-        .protocol-card {
-            background: var(--gray);
-            border: 1px solid #111;
-            padding: 20px;
-            transition: 0.3s ease;
-        }
-
-        .protocol-card:hover {
-            border-color: var(--green);
-            background: #0d0d0d;
-            box-shadow: 0 0 15px rgba(0, 255, 65, 0.1);
-        }
-
-        .id-tag {
-            font-size: 10px;
-            color: var(--green);
-            margin-bottom: 8px;
-            display: block;
-        }
-
-        .protocol-card h3 {
-            color: #fff;
-            margin: 0 0 10px 0;
-            font-size: 1.1rem;
-        }
-
-        .difficulty {
-            font-size: 10px;
-            color: var(--blue);
-            margin-bottom: 15px;
-            text-transform: uppercase;
-        }
-
-        .btn-open {
-            display: inline-block;
-            padding: 8px 12px;
-            border: 1px solid var(--blue);
-            color: var(--blue);
-            text-decoration: none;
-            font-size: 11px;
-            font-weight: bold;
-        }
-
-        .btn-open:hover {
-            background: var(--blue);
-            color: #000;
-        }
-
-        .nav-back {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            color: var(--blue);
-            text-decoration: none;
-            font-size: 12px;
-            border: 1px solid var(--blue);
-            padding: 5px 15px;
-            background: #000;
-        }
+        :root { --bg: #000; --blue: #33BBFF; --green: #00FF41; }
+        body { background: var(--bg); color: #ccc; font-family: 'Courier New', monospace; margin: 0; }
+        .nav-header { background: #050505; border-bottom: 1px solid var(--blue); padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
+        .nav-header a { color: var(--blue); text-decoration: none; font-size: 12px; font-weight: bold; }
+        .container { padding: 40px; }
+        .tutorial-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+        .card { background: #0a0a0a; border: 1px solid #111; padding: 20px; transition: 0.3s; }
+        .card:hover { border-color: var(--green); box-shadow: 0 0 15px rgba(0,255,65,0.1); }
+        .btn { display: inline-block; margin-top: 15px; padding: 8px 12px; border: 1px solid var(--blue); color: var(--blue); text-decoration: none; font-size: 11px; }
+        .btn:hover { background: var(--blue); color: #000; }
     </style>
 </head>
 <body>
-
-    <div class="status-bar">
-        <p>> REPAIR_OS_v4.2</p>
-        <p>> STATUS: <span style="color:var(--green)">CONNECTED</span></p>
-        <p>> ENCRYPTION: ACTIVE</p>
-        <hr style="border:0; border-top:1px solid #222; margin: 20px 0;">
-        <p style="color:#555">REPAIR_LOG_OVERVIEW:</p>
-        <div style="color:var(--green); font-size:10px; line-height:1.8;">
-            - PHN_BATT_01 [OK]<br>
-            - PHN_SCRN_02 [OK]<br>
-            - PC_THERM_03 [OK]<br>
-            - LPT_RAM_04 [OK]<br>
-            - PHN_CHRG_05 [OK]<br>
-            - PC_GPU_06 [OK]<br>
-            - CONS_JOY_07 [OK]<br>
-            - LPT_SSD_08 [OK]
+    <div class="nav-header">
+        <a href="/">[ TECHTORIALS_CORE ]</a>
+        <div style="display:flex; gap:20px;">
+            <a href="/dictionary" style="color:#eee">DICTIONARY</a>
+            <a href="/software" style="color:#eee">SOFTWARE</a>
         </div>
     </div>
-
-    <div class="main-content">
-        <a href="/" class="nav-back">ESC_TO_CORE</a>
-        
-        <div class="header">
-            <h1>REPAIR_PROTOCOLS</h1>
-            <p style="color:var(--green)">> SYSTEM_READY: 08_MODULES_DETECTED</p>
-        </div>
-
+    <div class="container">
+        <h1 style="color:var(--blue); border-bottom: 1px solid var(--blue); padding-bottom:10px;">REPAIR_PROTOCOLS</h1>
         <div class="tutorial-grid">
-            <div class="protocol-card">
-                <span class="id-tag">REF: PHN-BATT-01</span>
-                <h3>BATTERY_REPLACEMENT</h3>
-                <div class="difficulty">[MEDIUM_RISK]</div>
-                <p style="font-size: 12px;">Thermal management and adhesive removal for Li-ion cells.</p>
-                <a href="/tutorials/battery" class="btn-open">ACCESS_LOG</a>
+            <div class="card"><span style="color:var(--green); font-size:10px;">PHN-BATT-01</span><h3>BATTERY_SWAP</h3><a href="/tutorials/battery" class="btn">ACCESS_LOG</a></div>
+            <div class="card"><span style="color:var(--green); font-size:10px;">PHN-SCRN-02</span><h3>SCREEN_REPAIR</h3><a href="/tutorials/screen" class="btn">ACCESS_LOG</a></div>
             </div>
-
-            <div class="protocol-card">
-                <span class="id-tag">REF: PHN-SCRN-02</span>
-                <h3>DIGITIZER_SWAP</h3>
-                <div class="difficulty">[HIGH_PRECISION]</div>
-                <p style="font-size: 12px;">Full OLED/LCD replacement and sensor hardware pairing.</p>
-                <a href="/tutorials/screen" class="btn-open">ACCESS_LOG</a>
-            </div>
-
-            <div class="protocol-card">
-                <span class="id-tag">REF: PC-THERM-03</span>
-                <h3>THERMAL_PASTE_REAPP</h3>
-                <div class="difficulty">[LOW_STRESS]</div>
-                <p style="font-size: 12px;">Improving CPU/GPU thermals with fresh interface material.</p>
-                <a href="/tutorials/thermal" class="btn-open">ACCESS_LOG</a>
-            </div>
-
-            <div class="protocol-card">
-                <span class="id-tag">REF: LPT-RAM-04</span>
-                <h3>MEMORY_UPGRADE</h3>
-                <div class="difficulty">[LOW_STRESS]</div>
-                <p style="font-size: 12px;">Upgrading SODIMM modules for improved system multitasking.</p>
-                <a href="/tutorials/ram" class="btn-open">ACCESS_LOG</a>
-            </div>
-
-            <div class="protocol-card">
-                <span class="id-tag">REF: PHN-CHRG-05</span>
-                <h3>PORT_MAINTENANCE</h3>
-                <div class="difficulty">[MEDIUM_RISK]</div>
-                <p style="font-size: 12px;">Debris extraction and charging port hardware replacement.</p>
-                <a href="/tutorials/charge-port" class="btn-open">ACCESS_LOG</a>
-            </div>
-
-            <div class="protocol-card">
-                <span class="id-tag">REF: PC-GPU-06</span>
-                <h3>GPU_COOLING_FIX</h3>
-                <div class="difficulty
+    </div>
+</body>
+</html>
