@@ -2,50 +2,61 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>TECHTORIALS // DICTIONARY</title>
+    <title>THE_TECH_INDEX // DICTIONARY</title>
     <style>
         :root { --bg: #000; --blue: #33BBFF; --green: #00FF41; }
         body { background: var(--bg); color: #ccc; font-family: 'Courier New', monospace; margin: 0; }
-        .container { padding: 40px; max-width: 900px; margin: 0 auto; }
-        .search { width: 100%; padding: 15px; background: #111; border: 1px solid var(--green); color: var(--green); font-family: inherit; margin-bottom: 30px; outline: none; }
-        .term-card { border-left: 3px solid var(--blue); padding: 15px; margin-bottom: 15px; background: #050505; }
-        .term-title { color: var(--blue); font-weight: bold; display: block; margin-bottom: 5px; }
+        .nav-header { background: #050505; border-bottom: 1px solid var(--green); padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; }
+        .nav-header a { color: #eee; text-decoration: none; font-size: 12px; }
+        .container { padding: 40px; }
+        .search { width: 100%; padding: 15px; background: #080808; border: 1px solid var(--blue); color: var(--blue); font-family: inherit; margin-bottom: 30px; outline: none; }
+        .term-row { border-bottom: 1px solid #111; padding: 10px 0; display: flex; }
+        .term-row b { color: var(--green); min-width: 150px; }
     </style>
 </head>
 <body>
-    <div style="background: #050505; border-bottom: 1px solid #33BBFF; padding: 15px 30px; display: flex; justify-content: space-between; align-items: center;">
-        <a href="/" style="color: #33BBFF; text-decoration: none; font-weight: bold; letter-spacing: 2px;">[ TECHTORIALS_CORE ]</a>
-        <div style="display: flex; gap: 20px;">
-            <a href="/tutorials" style="color: #eee; text-decoration: none; font-size: 12px;">REPAIRS</a>
-            <a href="/software" style="color: #eee; text-decoration: none; font-size: 12px;">SOFTWARE</a>
-            <a href="/techy" style="color: #eee; text-decoration: none; font-size: 12px;">AI</a>
-            <a href="/dictionary" style="color: #33BBFF; text-decoration: none; font-size: 12px; border-bottom: 1px solid var(--blue);">DICT</a>
+    <div class="nav-header">
+        <a href="/" style="font-weight:bold; color:var(--green)">[ THE_TECH_INDEX ]</a>
+        <div style="display:flex; gap:20px;">
+            <a href="/tutorials">TECHTORIALS</a>
+            <a href="/software">SOFTWARE</a>
+            <a href="/techy">AI_DB</a>
+            <a href="/dictionary" style="color:var(--green)">DICT</a>
         </div>
     </div>
-
     <div class="container">
-        <h1 style="color:var(--green)">TECH_DICTIONARY_v2.0</h1>
-        <input type="text" id="dictSearch" class="search" placeholder="FILTER_DATABASE..." onkeyup="searchDict()">
-        
+        <h1 style="color:var(--green)">HARDWARE_DICTIONARY_v2</h1>
+        <input type="text" class="search" placeholder="FILTER_HARDWARE_TERMINOLOGY..." onkeyup="filter(this, 'term-row')">
         <div id="dictList">
-            <div class="term-card"><span class="term-title">BIOS</span>Basic Input/Output System. Firmware used to initialize hardware during booting.</div>
-            <div class="term-card"><span class="term-title">CMOS</span>Complementary Metal-Oxide-Semiconductor. A small battery-powered chip that stores BIOS settings.</div>
-            <div class="term-card"><span class="term-title">ESD</span>Electrostatic Discharge. The sudden flow of electricity that can fry circuits.</div>
-            <div class="term-card"><span class="term-title">FIRMWARE</span>Software permanently programmed into a hardware device's memory.</div>
-            <div class="term-card"><span class="term-title">GPU</span>Graphics Processing Unit. Specialized circuit for image and video processing.</div>
-            <div class="term-card"><span class="term-title">HEATSINK</span>Component that disperses heat from a processor to keep it cool.</div>
-            <div class="term-card"><span class="term-title">PENTALOBE</span>A 5-point star-shaped screw system used primarily in modern smartphones.</div>
-            <div class="term-card"><span class="term-title">SPUDGER</span>An anti-static tool used for prying and poking sensitive electronics.</div>
-        </div>
+            <div class="term-row"><b>BIOS</b>Basic Input/Output System. Firmware that starts the PC.</div>
+            <div class="term-row"><b>CMOS</b>Battery that keeps the PC clock and BIOS settings alive.</div>
+            <div class="term-row"><b>DIGITIZER</b>The glass layer of a screen that detects touch.</div>
+            <div class="term-row"><b>ESD_STRAP</b>Wrist strap used to prevent static damage to parts.</div>
+            <div class="term-row"><b>FPC_CONN</b>Flexible Printed Circuit connector (ribbon cable port).</div>
+            <div class="term-row"><b>GPU</b>Graphics Processing Unit. Dedicated video processor.</div>
+            <div class="term-row"><b>HEATSINK</b>Metal block used to pull heat away from a CPU.</div>
+            <div class="term-row"><b>ISOPROPYL</b>90%+ Alcohol used for cleaning thermal paste/motherboards.</div>
+            <div class="term-row"><b>JUMP_WIRE</b>Small copper wire used to repair broken board traces.</div>
+            <div class="term-row"><b>KICKSTAND</b>The mechanical support on tablets/consoles.</div>
+            <div class="term-row"><b>LI-ION</b>Lithium-Ion. The chemistry used in modern phone batteries.</div>
+            <div class="term-row"><b>MOTHERBOARD</b>The main circuit board connecting all components.</div>
+            <div class="term-row"><b>NVME</b>Non-Volatile Memory Express. High-speed SSD standard.</div>
+            <div class="term-row"><b>OLED</b>Organic Light Emitting Diode. High-contrast screen tech.</div>
+            <div class="term-row"><b>PENTALOBE</b>5-point star screw used in iPhones and MacBooks.</div>
+            <div class="term-row"><b>QUARTZ</b>The crystal used to keep timing on a motherboard.</div>
+            <div class="term-row"><b>RAM</b>Random Access Memory. Temporary storage for active apps.</div>
+            <div class="term-row"><b>SPUDGER</b>Plastic prying tool used to avoid short circuits.</div>
+            <div class="term-row"><b>THERMAL_PASTE</b>Compound that fills gaps between CPU and heatsink.</div>
+            <div class="term-row"><b>USB-C</b>Universal serial bus standard for charging and data.</div>
+            <div class="term-row"><b>VRAM</b>Dedicated memory for graphics cards.</div>
+            <div class="term-row"><b>WATTAGE</b>Measurement of power consumption for PSUs.</div>
+            </div>
     </div>
-
     <script>
-        function searchDict() {
-            let input = document.getElementById('dictSearch').value.toLowerCase();
-            let cards = document.getElementsByClassName('term-card');
-            for (let card of cards) {
-                card.style.display = card.innerText.toLowerCase().includes(input) ? "block" : "none";
-            }
+        function filter(el, cls) {
+            let val = el.value.toLowerCase();
+            let items = document.getElementsByClassName(cls);
+            for (let i of items) { i.style.display = i.innerText.toLowerCase().includes(val) ? "flex" : "none"; }
         }
     </script>
 </body>
