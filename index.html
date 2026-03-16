@@ -3,27 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TECHTORIALS // MAIN_CORE</title>
+    <title>THE_TECH_INDEX</title>
     <style>
-        :root { --bg: #000; --blue: #33BBFF; --green: #00FF41; }
-        body { background: var(--bg); color: var(--blue); font-family: 'Courier New', monospace; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; margin: 0; overflow: hidden; }
-        .logo-main { font-size: 90px; font-weight: 900; line-height: 0.7; transform: skewX(-15deg); margin: 0; }
-        .logo-sub { font-size: 35px; font-weight: 300; letter-spacing: 16px; margin-bottom: 50px; transform: skewX(-15deg); }
-        .nav-grid { display: grid; grid-template-columns: repeat(2, 280px); gap: 20px; }
-        .nav-item { border: 1px solid var(--blue); padding: 25px; text-align: center; text-decoration: none; color: var(--blue); font-weight: bold; letter-spacing: 2px; transition: 0.3s; background: rgba(51, 187, 255, 0.02); }
-        .nav-item:hover { background: var(--blue); color: #000; box-shadow: 0 0 25px var(--blue); }
-        .system-footer { margin-top: 60px; color: var(--green); font-size: 12px; text-align: center; }
-    </style>
-</head>
-<body>
-    <h1 class="logo-main">TECH</h1>
-    <div class="logo-sub">TORIALS</div>
-    <div class="nav-grid">
-        <a href="/tutorials" class="nav-item">REPAIR_PROTOCOLS</a>
-        <a href="/software" class="nav-item">SOFTWARE_REPO</a>
-        <a href="/techy" class="nav-item">AI_DATABASE</a>
-        <a href="/dictionary" class="nav-item">TECH_DICTIONARY</a>
-    </div>
-    <div class="system-footer">> SYSTEM_STATUS: ONLINE<br><span style="color:#333;">JD_OS_v4.2.0</span></div>
-</body>
-</html>
+        :root {
+            --bg: #000;
+            --accent: #33BBFF; /* Keep the blue, or swap to #FFF for a cleaner look */
+            --green: #00FF41;
+        }
+
+        body { 
+            background: var(--bg); 
+            color: var(--accent); 
+            font-family: 'Courier New', monospace; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
+            height: 100vh; 
+            margin: 0; 
+        }
+
+        /* The New Branding */
+        .logo-container {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .logo-main {
+            font-size: 50px;
+            font-weight: 900;
+            letter-spacing: -2px;
+            margin: 0;
+            color: #fff; /* White makes it feel less "hacker" and more "modern index" */
+        }
+
+        .logo-sub {
+            font-size: 18px;
+            font-weight: 300;
+            letter-spacing: 10px;
+            margin-top: 5px;
+            color: var(--accent);
+            border-top: 1px solid var(--accent);
+            padding-top: 5px;
+        }
+
+        /* The Navigation Grid */
+        .nav-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 280px);
+            gap: 20px;
+        }
+
+        .nav-item {
+            border: 1px solid #222; /* Subtle border until hover */
+            padding: 30px;
+            text-align: center;
+            text-decoration: none;
+            color: #888; 
+            font-weight: bold;
+            font-size: 13px;
+            letter-spacing: 2px;
+            transition: 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            background: #050505;
+        }
+
+        .nav-item:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(51, 187, 255, 0.1);
+        }
+
+        /* Status Footer */
+        .footer {
+            margin-top: 80px;
+            font-size: 10px;
+            color: #333;
+            letter-spacing: 3px;
+        }
+
+        @media (max-width: 600px) {
+            .nav-grid { grid-template-columns: 1fr; width: 90%; }
+        }
