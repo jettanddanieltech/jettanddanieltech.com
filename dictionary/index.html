@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TECHTORIALS // DICTIONARY</title>
+    <style>
+        :root {
+            --bg: #000000;
+            --blue: #33BBFF;
+            --green: #00FF41;
+            --dark-blue: #0055FF;
+            --text: #ffffff;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Courier New', monospace;
+            margin: 0;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 2px solid var(--blue);
+            padding-bottom: 20px;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        h1 {
+            color: var(--blue);
+            font-size: 2.5rem;
+            letter-spacing: 5px;
+            margin: 0;
+            transform: skewX(-10deg);
+        }
+
+        #searchBar {
+            width: 100%;
+            max-width: 600px;
+            padding: 15px;
+            background: #111;
+            border: 1px solid var(--blue);
+            color: var(--green);
+            font-family: 'Courier New', monospace;
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            outline: none;
+        }
+
+        #searchBar:focus {
+            box-shadow: 0 0 15px var(--blue);
+        }
+
+        .dict-container {
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .term-card {
+            background: #050505;
+            border-left: 4px solid var(--blue);
+            margin-bottom: 15px;
+            padding: 20px;
+            transition: 0.3s;
+        }
+
+        .term-card:hover {
+            background: #0a0a0a;
+            border-left: 4px solid var(--green);
+        }
+
+        .term-title {
+            color: var(--blue);
+            font-weight: bold;
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .term-def {
+            color: #ccc;
+            line-height: 1.6;
+        }
+
+        .nav-home {
+            margin-top: 50px;
+            color: var(--green);
+            text-decoration: none;
+            border: 1px solid var(--green);
+            padding: 10px 20px;
+        }
+
+        .nav-home:hover {
+            background: var(--green);
+            color: black;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>DICTIONARY_DATABASE</h1>
+        <p style="color: var(--green)">> SEARCHING_AUTHORIZED...</p>
+    </div>
+
+    <input type="text" id="searchBar" placeholder="Type a term to search..." onkeyup="filterDict()">
+
+    <div class="dict-container" id="dictList">
+        <div class="term-card">
+            <span class="term-title">BIOS</span>
+            <span class="term-def">Basic Input/Output System. The firmware used to perform hardware initialization during the booting process.</span>
+        </div>
+
+        <div class="term-card">
+            <span class="term-title">CMOS BATTERY</span>
+            <span class="term-def">A small battery on the motherboard that powers the BIOS memory, keeping settings like the date and time saved.</span>
+        </div>
+
+        <div class="term-card">
+            <span class="term-title">ESD (ELECTROSTATIC DISCHARGE)</span>
+            <span class="term-def">The sudden flow of electricity between two charged objects. Can destroy sensitive tech components instantly.</span>
+        </div>
+
+        <div class="term
