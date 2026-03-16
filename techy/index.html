@@ -2,64 +2,90 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>THE_TECH_INDEX // AI_DATABASE</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THE_TECH_INDEX</title>
     <style>
-        :root { --bg: #000; --blue: #33BBFF; --green: #00FF41; }
-        body { background: var(--bg); color: #ccc; font-family: 'Courier New', monospace; margin: 0; }
-        .nav-header { background: #050505; border-bottom: 1px solid var(--blue); padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; }
-        .nav-header a { color: #eee; text-decoration: none; font-size: 12px; }
-        .container { padding: 40px; }
-        .search { width: 100%; padding: 15px; background: #080808; border: 1px solid var(--green); color: var(--green); font-family: inherit; margin-bottom: 30px; outline: none; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 15px; }
-        .card { background: #0a0a0a; border: 1px solid #222; padding: 15px; font-size: 12px; }
-        .term { color: var(--blue); font-weight: bold; display: block; margin-bottom: 5px; }
-    </style>
-</head>
-<body>
-    <div class="nav-header">
-        <a href="/" style="font-weight:bold; color:var(--blue)">[ THE_TECH_INDEX ]</a>
-        <div style="display:flex; gap:20px;">
-            <a href="/tutorials">TECHTORIALS</a>
-            <a href="/software">SOFTWARE</a>
-            <a href="/techy" style="color:var(--blue)">AI_DB</a>
-            <a href="/dictionary">DICT</a>
-        </div>
-    </div>
-    <div class="container">
-        <h1 style="color:var(--blue)">AI_NEURAL_ARCHIVE</h1>
-        <input type="text" class="search" placeholder="SEARCH_ALGORITHMS..." onkeyup="filter(this, 'card')">
-        <div class="grid">
-            <div class="card"><span class="term">AGI</span>Artificial General Intelligence. AI that matches human intellectual capacity.</div>
-            <div class="card"><span class="term">BACKPROPAGATION</span>The primary algorithm for training neural networks.</div>
-            <div class="card"><span class="term">CONTEXT_WINDOW</span>The amount of data an AI can process in one session.</div>
-            <div class="card"><span class="term">DEEP_LEARNING</span>Multi-layered neural networks inspired by the human brain.</div>
-            <div class="card"><span class="term">EMBEDDINGS</span>Numerical representations of text used for semantic search.</div>
-            <div class="card"><span class="term">FINE_TUNING</span>Adjusting a pre-trained model for a specific task.</div>
-            <div class="card"><span class="term">GAN</span>Generative Adversarial Network. Two AIs competing to create data.</div>
-            <div class="card"><span class="term">HALLUCINATION</span>When AI generates false information confidently.</div>
-            <div class="card"><span class="term">INFERENCE</span>The phase where a trained AI makes a prediction.</div>
-            <div class="card"><span class="term">JSON_MODE</span>Forcing AI to output data in structured code format.</div>
-            <div class="card"><span class="term">LLM</span>Large Language Model (e.g., GPT-4, Gemini).</div>
-            <div class="card"><span class="term">MULTIMODAL</span>AI that understands text, images, and audio simultaneously.</div>
-            <div class="card"><span class="term">NLP</span>Natural Language Processing. Teaching computers to read.</div>
-            <div class="card"><span class="term">OVERFITTING</span>When a model learns training data too well but fails real tests.</div>
-            <div class="card"><span class="term">PROMPT_ENGINEERING</span>The art of refining inputs to get better AI outputs.</div>
-            <div class="card"><span class="term">QUANTIZATION</span>Compressing AI models to run on weaker hardware.</div>
-            <div class="card"><span class="term">RLHF</span>Reinforcement Learning from Human Feedback.</div>
-            <div class="card"><span class="term">STOCHASTIC_PARROT</span>Theory that AI only predicts words without understanding.</div>
-            <div class="card"><span class="term">TRANSFORMER</span>The architecture behind modern AI like ChatGPT.</div>
-            <div class="card"><span class="term">UNSUPERVISED_LEARNING</span>AI finding patterns in data without human labels.</div>
-            <div class="card"><span class="term">VECTOR_DB</span>Database specialized for storing AI "thoughts" or embeddings.</div>
-            <div class="card"><span class="term">WEIGHTS</span>Numerical values that determine the strength of neural connections.</div>
-            <div class="card"><span class="term">ZERO_SHOT</span>Asking AI to do a task it wasn't explicitly trained for.</div>
-            </div>
-    </div>
-    <script>
-        function filter(el, cls) {
-            let val = el.value.toLowerCase();
-            let items = document.getElementsByClassName(cls);
-            for (let i of items) { i.style.display = i.innerText.toLowerCase().includes(val) ? "block" : "none"; }
+        :root {
+            --bg: #000;
+            --accent: #33BBFF;
+            --green: #00FF41;
         }
-    </script>
-</body>
-</html>
+
+        body { 
+            background: var(--bg); 
+            color: var(--accent); 
+            font-family: 'Courier New', monospace; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
+            height: 100vh; 
+            margin: 0; 
+            overflow: hidden;
+        }
+
+        .logo-container {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .logo-main {
+            font-size: 50px;
+            font-weight: 900;
+            letter-spacing: -2px;
+            margin: 0;
+            color: #fff;
+        }
+
+        .logo-sub {
+            font-size: 18px;
+            font-weight: 300;
+            letter-spacing: 10px;
+            margin-top: 5px;
+            color: var(--accent);
+            border-top: 1px solid var(--accent);
+            padding-top: 5px;
+        }
+
+        /* Top Grid for Secondary Pages */
+        .nav-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 180px); /* 3 columns for Software, AI, Dict */
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .nav-item {
+            border: 1px solid #222;
+            padding: 20px;
+            text-align: center;
+            text-decoration: none;
+            color: #666; 
+            font-size: 11px;
+            letter-spacing: 1px;
+            transition: 0.3s;
+            background: #050505;
+        }
+
+        .nav-item:hover {
+            border-color: #444;
+            color: #fff;
+        }
+
+        /* The Main Techtorials Button (Center Bottom) */
+        .main-btn-container {
+            width: 570px; /* Matches the width of the 3 boxes above */
+            margin-top: 10px;
+        }
+
+        .techtorials-btn {
+            display: block;
+            border: 1px solid var(--accent);
+            padding: 30px;
+            text-align: center;
+            text-decoration: none;
+            color: var(--accent);
+            font-weight: bold;
+            font-size: 18px;
+            letter-spacing: 5px;
+            transition: 0.4s;
