@@ -7,8 +7,9 @@
     <style>
         :root {
             --bg: #000;
-            --accent: #33BBFF; /* Keep the blue, or swap to #FFF for a cleaner look */
-            --green: #00FF41;
+            --accent: #33BBFF; 
+            --folder-gray: #4a4a4a;
+            --text-dim: #888;
         }
 
         body { 
@@ -19,69 +20,134 @@
             flex-direction: column; 
             align-items: center; 
             justify-content: center; 
-            height: 100vh; 
+            min-height: 100vh; 
             margin: 0; 
         }
 
-        /* The New Branding */
+        /* Branding Header */
         .logo-container {
             text-align: center;
-            margin-bottom: 60px;
+            margin-bottom: 50px;
         }
 
         .logo-main {
-            font-size: 50px;
+            font-size: 42px;
             font-weight: 900;
-            letter-spacing: -2px;
+            letter-spacing: -1px;
             margin: 0;
-            color: #fff; /* White makes it feel less "hacker" and more "modern index" */
+            color: #fff;
         }
 
         .logo-sub {
-            font-size: 18px;
+            font-size: 14px;
             font-weight: 300;
-            letter-spacing: 10px;
+            letter-spacing: 8px;
             margin-top: 5px;
             color: var(--accent);
-            border-top: 1px solid var(--accent);
-            padding-top: 5px;
+            border-top: 1px solid #222;
+            padding-top: 8px;
+            text-transform: uppercase;
         }
 
-        /* The Navigation Grid */
-        .nav-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 280px);
-            gap: 20px;
+        /* Directory Navigation */
+        .nav-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            width: 320px;
         }
 
         .nav-item {
-            border: 1px solid #222; /* Subtle border until hover */
-            padding: 30px;
-            text-align: center;
+            display: flex;
+            align-items: center;
+            padding: 14px 20px;
             text-decoration: none;
-            color: #888; 
-            font-weight: bold;
-            font-size: 13px;
-            letter-spacing: 2px;
-            transition: 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            color: var(--text-dim);
             background: #050505;
+            border: 1px solid #111;
+            transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+            font-size: 15px;
         }
 
+        /* Custom Folder Icon Style */
+        .icon {
+            display: flex;
+            align-items: center;
+            margin-right: 15px;
+            font-size: 12px;
+            color: #444;
+        }
+
+        .folder-glyph {
+            width: 16px;
+            height: 12px;
+            background: var(--folder-gray);
+            display: inline-block;
+            margin-left: 8px;
+            border-radius: 2px;
+            position: relative;
+        }
+
+        /* Hover Effects */
         .nav-item:hover {
             border-color: var(--accent);
+            color: #fff;
+            padding-left: 30px; /* Subtle slide-out */
+            background: #080808;
+            box-shadow: 0 0 20px rgba(51, 187, 255, 0.05);
+        }
+
+        .nav-item:hover .icon {
             color: var(--accent);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(51, 187, 255, 0.1);
+        }
+
+        .nav-item:hover .folder-glyph {
+            background: var(--accent);
         }
 
         /* Status Footer */
         .footer {
-            margin-top: 80px;
+            margin-top: 60px;
             font-size: 10px;
-            color: #333;
-            letter-spacing: 3px;
+            color: #222;
+            letter-spacing: 2px;
+            text-transform: uppercase;
         }
+    </style>
+</head>
+<body>
 
-        @media (max-width: 600px) {
-            .nav-grid { grid-template-columns: 1fr; width: 90%; }
-        }
+    <header class="logo-container">
+        <h1 class="logo-main">TECH_INDEX</h1>
+        <div class="logo-sub">Directory Access</div>
+    </header>
+
+    <nav class="nav-list">
+        <a href="/dictionary" class="nav-item">
+            <span class="icon">› <span class="folder-glyph"></span></span>
+            dictionary
+        </a>
+        <a href="/hardware" class="nav-item">
+            <span class="icon">› <span class="folder-glyph"></span></span>
+            hardware
+        </a>
+        <a href="/software" class="nav-item">
+            <span class="icon">› <span class="folder-glyph"></span></span>
+            software
+        </a>
+        <a href="/techy" class="nav-item">
+            <span class="icon">› <span class="folder-glyph"></span></span>
+            techy
+        </a>
+        <a href="/tutorials" class="nav-item">
+            <span class="icon">› <span class="folder-glyph"></span></span>
+            tutorials
+        </a>
+    </nav>
+
+    <footer class="footer">
+        System Status: Online // Root Access Granted
+    </footer>
+
+</body>
+</html>
