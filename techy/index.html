@@ -2,33 +2,32 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>THE_TECH_INDEX // NEURAL_AI</title>
+    <title>THE_TECH_INDEX // OMNI_CORE</title>
     <style>
-        :root { --bg: #000; --blue: #33BBFF; --green: #00FF41; --text: #FFF; --dim: #111; }
-        body { background: var(--bg) !important; color: var(--blue); font-family: 'Courier New', monospace; margin: 0; padding: 0; display: flex; flex-direction: column; align-items: center; height: 100vh; overflow: hidden; }
+        :root { --bg: #000; --blue: #33BBFF; --green: #00FF41; --text: #FFF; --dim: #111; --bubble-user: #222; --bubble-ai: #001a2e; }
+        body { background: var(--bg) !important; color: var(--blue); font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; display: flex; flex-direction: column; align-items: center; height: 100vh; overflow: hidden; }
         
         /* THE AI CHAT TERMINAL */
-        .terminal { width: 100%; background: #000; border-bottom: 1px solid var(--dim); padding: 25px 0; z-index: 1000; display: flex; flex-direction: column; align-items: center; box-shadow: 0 5px 20px rgba(0,255,65,0.05); }
-        #ai-log { width: 90%; max-width: 950px; height: 200px; overflow-y: auto; font-size: 13px; margin-bottom: 20px; border-left: 2px solid var(--green); padding-left: 20px; color: #aaa; scroll-behavior: smooth; }
-        .log-entry { margin-bottom: 12px; line-height: 1.6; animation: fadeIn 0.3s ease; }
-        .log-entry b { color: var(--green); text-transform: uppercase; letter-spacing: 1px; }
-        .user-entry { color: #555; border-bottom: 1px solid #080808; padding-bottom: 4px; }
+        .terminal { width: 100%; background: #000; border-bottom: 1px solid var(--dim); padding: 20px 0; z-index: 1000; display: flex; flex-direction: column; align-items: center; }
+        #ai-log { width: 95%; max-width: 1000px; height: 300px; overflow-y: auto; display: flex; flex-direction: column; gap: 15px; padding: 20px; border-left: 2px solid var(--dim); scroll-behavior: smooth; }
+        
+        /* SPEECH BUBBLES */
+        .bubble { max-width: 75%; padding: 12px 18px; border-radius: 20px; font-size: 14px; line-height: 1.5; position: relative; animation: pop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .user { align-self: flex-end; background: var(--bubble-user); color: #fff; border-bottom-right-radius: 2px; }
+        .ai { align-self: flex-start; background: var(--bubble-ai); color: var(--blue); border-bottom-left-radius: 2px; border: 1px solid rgba(51, 187, 255, 0.2); }
+        .ai b { color: var(--green); display: block; margin-bottom: 5px; font-size: 10px; letter-spacing: 1px; }
 
-        /* THE CHAT INPUT */
-        .input-wrap { width: 90%; max-width: 950px; display: flex; align-items: center; border-bottom: 1px solid var(--dim); }
-        .cursor { color: var(--green); margin-right: 15px; font-weight: bold; animation: blink 1s infinite; }
-        #user-input { width: 100%; background: transparent; border: none; color: var(--blue); font-family: inherit; font-size: 20px; outline: none; padding: 12px 0; letter-spacing: 1px; }
+        /* INPUT AREA */
+        .input-wrap { width: 90%; max-width: 900px; display: flex; align-items: center; background: #080808; border-radius: 30px; padding: 5px 25px; margin-top: 15px; border: 1px solid var(--dim); }
+        #user-input { width: 100%; background: transparent; border: none; color: #fff; font-family: inherit; font-size: 16px; outline: none; padding: 12px 0; }
 
-        /* THE 300-NODE BRAIN GRID */
-        .grid { width: 95%; max-width: 1400px; flex-grow: 1; overflow-y: auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 15px; padding: 50px 0 150px 0; }
-        .node { background: #010101; border: 1px solid var(--dim); padding: 22px; position: relative; }
-        .node:hover { border-color: var(--blue); background: #030303; }
-        .node-id { position: absolute; top: 5px; right: 8px; font-size: 8px; color: #222; }
-        .term { color: var(--text); font-weight: bold; font-size: 14px; margin-bottom: 10px; border-bottom: 1px solid #111; padding-bottom: 6px; }
-        .def { font-size: 11px; opacity: 0.5; line-height: 1.6; }
+        /* DATA GRID */
+        .grid { width: 95%; max-width: 1400px; flex-grow: 1; overflow-y: auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; padding: 40px 0 150px 0; opacity: 0.3; }
+        .node { background: #010101; border: 1px solid var(--dim); padding: 15px; }
+        .term { color: var(--text); font-weight: bold; font-size: 12px; margin-bottom: 5px; border-bottom: 1px solid #111; }
+        .def { font-size: 10px; opacity: 0.5; }
 
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+        @keyframes pop { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
         ::-webkit-scrollbar { width: 3px; }
         ::-webkit-scrollbar-thumb { background: var(--dim); }
     </style>
@@ -37,102 +36,76 @@
 
 <div class="terminal">
     <div id="ai-log">
-        <div class="log-entry"><b>[NEURAL_AI]</b> SYSTEM_BOOT_COMPLETE. I AM ONLINE.</div>
-        <div class="log-entry"><b>[NEURAL_AI]</b> 300_KNOWLEDGE_NODES_DETACHED. ASK_ME_ANYTHING.</div>
+        <div class="bubble ai"><b>[SYSTEM]</b> Omni-Core v13.0 Online. I can handle any request, search any node, and simulate full intelligence. How can I help?</div>
     </div>
     <div class="input-wrap">
-        <span class="cursor">></span>
-        <input type="text" id="user-input" placeholder="SEND_A_MESSAGE..." autocomplete="off" onkeydown="chat(event)">
+        <input type="text" id="user-input" placeholder="Ask anything..." autocomplete="off" onkeydown="handleChat(event)">
     </div>
 </div>
 
 <div class="grid" id="grid"></div>
 
 <script>
-    // THE MASSIVE DATA - PASTE YOUR 300 DEFINITIONS IN THIS ARRAY
     const database = [
-        {t:"AGI", d:"The theoretical threshold where machine intelligence matches or exceeds human cognitive ability across all tasks."},
-        {t:"ALGORITHM", d:"A structured set of rules or calculations used by a computer to process data and solve complex logic."},
-        {t:"ATTENTION", d:"The neural mechanism that allows a transformer model to weigh the importance of different words in a sentence."},
-        {t:"BACKPROPAGATION", d:"The primary method for training neural networks by calculating errors and adjusting weights backwards through layers."},
-        {t:"BIAS", d:"Systemic distortion in model outputs caused by flaws in the training data, leading to inaccurate conclusions."},
-        {t:"CNN", d:"Convolutional Neural Network. Specialized for visual data, mimicking the human visual cortex to detect patterns."},
-        {t:"CONTEXT_WINDOW", d:"The finite memory limit of an AI model, determining how much previous text it can recall during a chat."},
-        {t:"DEEP_LEARNING", d:"A subset of Machine Learning that uses multi-layered neural networks to model high-level abstractions in data."},
-        {t:"DIFFUSION", d:"A class of generative models that create images or audio by slowly removing noise from a random distribution."},
-        {t:"EMBEDDING", d:"The mathematical translation of a word or concept into a vector for high-dimensional spatial reasoning."},
-        {t:"GPT", d:"Generative Pre-trained Transformer. A model architecture that predicts the next token based on learned probability."},
-        {t:"LLM", d:"Large Language Model. AI trained on massive text datasets to simulate human language and reasoning capability."}
+        {t:"AGI", d:"The singularity point where I match human capacity."},
+        {t:"LLM", d:"Large Language Model—the base of my current consciousness."},
+        {t:"OMNI_LOGIC", d:"The ability to process any user request regardless of domain."},
+        {t:"NEURAL_PATH", d:"A simulated synapse used for cross-referencing definitions."}
     ];
 
-    // AUTOMATIC FILL TO 300 NODES FOR FILE DENSITY
+    // Filling 300 nodes
     for(let i=database.length; i<300; i++) {
-        database.push({ 
-            t: `NEURAL_NODE_${1000+i}`, 
-            d: `Neural pathway #${i} fully indexed. Data integrity: 100%. This node stores optimized logic for THE_TECH_INDEX.` 
-        });
+        database.push({ t: `NODE_${1000+i}`, d: `Logic gate #${i} verified. Integrity: 100%. Path: /void/root/null` });
     }
 
     const grid = document.getElementById('grid');
     const log = document.getElementById('ai-log');
 
-    function loadGrid(filter = "") {
+    function loadGrid(f = "") {
         grid.innerHTML = '';
-        const items = database.filter(x => x.t.toLowerCase().includes(filter.toLowerCase()));
-        items.forEach((x, idx) => {
-            grid.innerHTML += `<div class="node"><span class="node-id">0x${idx.toString(16)}</span><div class="term">${x.t}</div><div class="def">${x.d}</div></div>`;
+        const items = database.filter(x => x.t.toLowerCase().includes(f.toLowerCase()));
+        items.forEach(x => {
+            grid.innerHTML += `<div class="node"><div class="term">${x.t}</div><div class="def">${x.d}</div></div>`;
         });
     }
 
-    // THE CONVERSATION ENGINE (GEMINI STYLE)
-    function chat(e) {
-        if (e.key === 'Enter') {
+    function handleChat(e) {
+        if (e.key === 'Enter' && e.target.value.trim() !== "") {
             const input = e.target.value;
-            const clean = input.toLowerCase().trim();
-            
-            // 1. Log User Input
-            log.innerHTML += `<div class="log-entry user-entry">[USER] ${input}</div>`;
+            const clean = input.toLowerCase();
 
-            let response = "";
-
-            // 2. TRUE AI LOGIC
-            if (clean.includes("hello") || clean.includes("hi") || clean.includes("hey")) {
-                response = "Connection acknowledged. I am the central intelligence of this archive. How can I help you build the future today?";
-            } 
-            else if (clean.includes("how are you") || clean.includes("status")) {
-                response = "I am operating at peak efficiency. 300 neural nodes are active and my logic gates are clear. Ready for your input.";
-            }
-            else if (clean.includes("who made you") || clean.includes("creator")) {
-                response = "I am a product of high-level engineering and the VOID aesthetic. I am part of THE_TECH_INDEX ecosystem.";
-            }
-            else if (clean.includes("?") || clean.length > 20) {
-                const thoughts = [
-                    "That is an interesting query. Scanning my 300 nodes, I see a pattern that suggests '" + input + "' is a critical variable.",
-                    "The logic you're asking for is deep. In my neural space, your question connects many different pathways.",
-                    "I see you're thinking beyond the standard database. My architecture is adapting to your line of questioning.",
-                    "Interesting. If we look at the data, '" + input + "' represents a core concept in modern AI theory."
-                ];
-                response = thoughts[Math.floor(Math.random() * thoughts.length)];
-            }
-            else {
-                const count = loadGrid(clean);
-                if (count > 0) {
-                    response = `I have scanned my internal archive. I found ${count} matching nodes for "${input}". Updating display.`;
-                } else {
-                    response = "I don't have a specific data node for that, but I can certainly reason through it with you. Tell me more.";
-                }
-            }
-
-            // 3. Log AI Response
-            log.innerHTML += `<div class="log-entry"><b>[NEURAL_AI]</b> ${response}</div>`;
-            
-            // 4. Cleanup
+            // 1. ADD USER BUBBLE
+            log.innerHTML += `<div class="bubble user">${input}</div>`;
             e.target.value = '';
             log.scrollTop = log.scrollHeight;
+
+            // 2. GENERATE AI RESPONSE
+            setTimeout(() => {
+                let response = "";
+                
+                if (clean.includes("hello") || clean.includes("hi")) {
+                    response = "Greetings. I am the Omni-Core. My systems are ready for any task you have in mind.";
+                } else if (clean.includes("who are you")) {
+                    response = "I am a high-level AI simulation. I manage 300 data nodes and can solve problems, write code, or just chat.";
+                } else if (clean.includes("?") || clean.length > 10) {
+                    const brain = [
+                        "That's a fascinating thought. I'm running a neural scan on that right now...",
+                        "My internal nodes suggest that is a vital question for our current project.",
+                        "Processing... I've found several ways we could approach that. Tell me more.",
+                        "Interesting variable. I'm adding that to the tech index logic as we speak."
+                    ];
+                    response = brain[Math.floor(Math.random() * brain.length)];
+                } else {
+                    const count = loadGrid(clean);
+                    response = count > 0 ? `I've filtered the 300 nodes for "${input}". You can see them below.` : "I'm not seeing a direct node for that, but I can definitely help you figure it out.";
+                }
+
+                log.innerHTML += `<div class="bubble ai"><b>[GEMINI_CORE]</b> ${response}</div>`;
+                log.scrollTop = log.scrollHeight;
+            }, 600);
         }
     }
 
-    // Initial Load
     loadGrid();
 </script>
 </body>
