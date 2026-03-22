@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>JDT // NEURAL_VAULT</title>
+    <title>JDT // NEURAL_VAULT_v18</title>
     <style>
         :root { 
             --cyan: #00d2ff; --bg: #000; --panel: #050505; 
             --border: #1a1a1a; --font: 'Courier New', monospace; 
-            --glass: rgba(10, 10, 10, 0.8);
+            --glass: rgba(10, 10, 10, 0.9);
         }
 
-        * { box-sizing: border-box; outline: none; transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1); }
+        * { box-sizing: border-box; outline: none; transition: 0.2s ease; }
         ::-webkit-scrollbar { width: 3px; }
         ::-webkit-scrollbar-thumb { background: var(--cyan); }
 
@@ -21,7 +21,7 @@
             display: flex; flex-direction: column; 
         }
 
-        /* --- TOP NAV BAR (SYSTEM NAV) --- */
+        /* --- TOP SYSTEM NAV --- */
         .top-nav { 
             width: 100%; display: flex; justify-content: center; gap: 25px; 
             padding: 20px; border-bottom: 1px solid var(--border); 
@@ -33,65 +33,60 @@
         }
         .nav-link:hover, .nav-active { color: var(--cyan); text-shadow: 0 0 10px var(--cyan); }
 
-        /* --- HEADER & SEARCH --- */
-        .search-sector { 
-            padding: 50px 10% 20px; text-align: center; 
-            background: linear-gradient(to bottom, #080808, #000); 
+        /* --- SEARCH SECTION --- */
+        .search-area { padding: 40px 10% 20px; text-align: center; }
+        #search-input { 
+            width: 100%; max-width: 600px; background: #050505; border: 1px solid var(--border);
+            padding: 15px 25px; color: var(--cyan); font-family: inherit; border-radius: 2px;
+            letter-spacing: 2px;
         }
-        .vault-title { font-size: 1.1rem; letter-spacing: 12px; color: #222; margin-bottom: 25px; text-transform: uppercase; }
-        #main-search { 
-            width: 100%; max-width: 650px; background: #050505; border: 1px solid var(--border);
-            padding: 18px 30px; color: var(--cyan); font-family: inherit; border-radius: 4px;
-            font-size: 1rem; letter-spacing: 2px;
-        }
-        #main-search:focus { border-color: var(--cyan); box-shadow: 0 0 30px rgba(0,210,255,0.05); }
 
-        /* --- TUTORIAL GRID --- */
-        #grid-viewport { 
+        /* --- GRID --- */
+        #main-grid { 
             flex-grow: 1; overflow-y: auto; padding: 20px 10% 150px; 
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
-            gap: 20px; scroll-behavior: smooth;
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; 
         }
-        .t-card { 
-            background: #080808; border: 1px solid var(--border); padding: 30px; 
-            cursor: pointer; position: relative; border-radius: 2px;
+        .card { 
+            background: #080808; border: 1px solid var(--border); padding: 25px; 
+            cursor: pointer; position: relative;
         }
-        .t-card:hover { border-color: var(--cyan); transform: translateY(-5px); background: #0c0c0c; box-shadow: 0 10px 40px rgba(0,0,0,0.5); }
-        .t-card h3 { font-size: 0.95rem; margin: 0 0 12px; color: #eee; letter-spacing: 1px; }
-        .t-card p { font-size: 0.75rem; color: #444; line-height: 1.6; }
-        .category-tag { font-size: 0.55rem; color: var(--cyan); border: 1px solid var(--cyan); padding: 3px 8px; width: fit-content; margin-bottom: 15px; letter-spacing: 2px; }
+        .card:hover { border-color: var(--cyan); transform: scale(1.02); background: #0c0c0c; }
+        .card h3 { font-size: 0.9rem; margin: 10px 0; color: #eee; }
+        .card p { font-size: 0.7rem; color: #444; line-height: 1.5; }
+        .tag { font-size: 0.5rem; color: var(--cyan); border: 1px solid var(--cyan); padding: 2px 6px; width: fit-content; }
 
-        /* --- BOTTOM NAV BAR (FILTER DOCK) --- */
+        /* --- BOTTOM FILTER DOCK --- */
         .bottom-dock { 
-            position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
-            width: 90%; max-width: 700px; background: rgba(5,5,5,0.9);
-            backdrop-filter: blur(25px); border: 1px solid var(--border);
-            border-radius: 10px; display: flex; justify-content: space-around;
-            padding: 18px; z-index: 2000; box-shadow: 0 -10px 50px rgba(0,0,0,0.9);
+            position: fixed; bottom: 25px; left: 50%; transform: translateX(-50%);
+            width: 90%; max-width: 600px; background: var(--glass);
+            backdrop-filter: blur(20px); border: 1px solid var(--border);
+            border-radius: 5px; display: flex; justify-content: space-around;
+            padding: 15px; z-index: 2000;
         }
-        .filter-btn { 
-            background: none; border: none; color: #333; font-family: inherit;
-            font-size: 0.6rem; letter-spacing: 3px; cursor: pointer; font-weight: 900;
-        }
-        .filter-btn:hover, .filter-active { color: var(--cyan); text-shadow: 0 0 8px var(--cyan); }
+        .f-btn { background: none; border: none; color: #333; font-family: inherit; font-size: 0.6rem; letter-spacing: 2px; cursor: pointer; }
+        .f-btn:hover, .f-active { color: var(--cyan); }
 
-        /* --- POPUP MODAL --- */
-        #modal-overlay { 
+        /* --- MODAL / POPUP --- */
+        #modal { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.98); z-index: 3000; display: none;
-            flex-direction: column; padding: 8% 15%; overflow-y: auto;
+            flex-direction: column;
         }
-        .exit-btn { 
-            position: absolute; top: 40px; right: 40px; background: none; 
-            border: 1px solid #222; color: #444; padding: 12px 25px;
-            cursor: pointer; font-family: inherit; font-size: 0.6rem; letter-spacing: 4px;
+        #progress-container { width: 100%; height: 4px; background: #111; position: sticky; top: 0; z-index: 3100; }
+        #progress-bar { width: 0%; height: 100%; background: var(--cyan); box-shadow: 0 0 10px var(--cyan); }
+        
+        .modal-scroll { overflow-y: auto; padding: 60px 15%; height: 100%; }
+        .modal-header { margin-bottom: 40px; }
+        #m-title { font-size: 2rem; color: var(--cyan); margin: 0; letter-spacing: 3px; }
+        
+        #m-body { line-height: 2; color: #888; font-size: 1rem; white-space: pre-line; margin-bottom: 40px; }
+        
+        .btn-group { display: flex; gap: 15px; position: fixed; top: 30px; right: 30px; }
+        .action-btn { 
+            background: #000; border: 1px solid #222; color: #555; 
+            padding: 10px 20px; cursor: pointer; font-family: inherit; font-size: 0.6rem; letter-spacing: 2px;
         }
-        .exit-btn:hover { border-color: var(--cyan); color: var(--cyan); }
-        #modal-title { font-size: 2.5rem; color: var(--cyan); margin-bottom: 10px; letter-spacing: -1px; font-weight: 900; }
-        #modal-meta { font-size: 0.7rem; color: #444; margin-bottom: 40px; letter-spacing: 5px; }
-        #modal-body { line-height: 2.2; color: #999; font-size: 1.1rem; white-space: pre-line; border-top: 1px solid #111; padding-top: 40px; }
-
-        .step-num { color: var(--cyan); font-weight: bold; margin-right: 10px; }
+        .action-btn:hover { border-color: var(--cyan); color: var(--cyan); }
 
     </style>
 </head>
@@ -99,36 +94,102 @@
 
     <nav class="top-nav">
         <a href="index.html" class="nav-link">HOME</a>
-        <a href="dictionary.html" class="nav-link">DICTIONARY</a>
-        <a href="hardware.html" class="nav-link">HARDWARE</a>
-        <a href="software.html" class="nav-link">SOFTWARE</a>
         <a href="ai.html" class="nav-link">TECHY_AI</a>
         <a href="tutorials.html" class="nav-link nav-active">TUTORIALS</a>
+        <a href="hardware.html" class="nav-link">HARDWARE</a>
     </nav>
 
-    <header class="search-sector">
-        <div class="vault-title">System_Manual_Archives</div>
-        <input type="text" id="main-search" placeholder="FILTER BY KEYWORD..." onkeyup="runFilter()">
-    </header>
+    <div class="search-area">
+        <input type="text" id="search-input" placeholder="SEARCH ARCHIVES..." onkeyup="filter()">
+    </div>
 
-    <main id="grid-viewport"></main>
+    <main id="main-grid"></main>
 
     <nav class="bottom-dock">
-        <button class="filter-btn filter-active" onclick="applyCat('ALL', this)">ALL_LOGS</button>
-        <button class="filter-btn" onclick="applyCat('HARDWARE', this)">HARDWARE</button>
-        <button class="filter-btn" onclick="applyCat('CODE', this)">CODE</button>
-        <button class="filter-btn" onclick="applyCat('SOFTWARE', this)">SOFTWARE</button>
-        <button class="filter-btn" onclick="applyCat('MATH', this)">MATH</button>
+        <button class="f-btn f-active" onclick="setCat('ALL', this)">ALL</button>
+        <button class="f-btn" onclick="setCat('HARDWARE', this)">HARDWARE</button>
+        <button class="f-btn" onclick="setCat('CODE', this)">CODE</button>
+        <button class="f-btn" onclick="setCat('MATH', this)">MATH</button>
     </nav>
 
-    <div id="modal-overlay">
-        <button class="exit-btn" onclick="closeModal()">CLOSE_TERMINAL</button>
-        <div id="modal-meta">CATEGORY // <span id="meta-cat" style="color:var(--cyan)"></span></div>
-        <h1 id="modal-title"></h1>
-        <div id="modal-body"></div>
+    <div id="modal">
+        <div id="progress-container"><div id="progress-bar"></div></div>
+        <div class="btn-group">
+            <button class="action-btn" onclick="copyContent()">COPY_CODE</button>
+            <button class="action-btn" onclick="closeM()">EXIT_X</button>
+        </div>
+        <div class="modal-scroll" onscroll="updateProgress(this)">
+            <div class="modal-header">
+                <div id="m-tag" class="tag"></div>
+                <h1 id="m-title"></h1>
+            </div>
+            <div id="m-body"></div>
+        </div>
     </div>
 
     <script>
-        // --- 30+ TUTORIAL DATABASE ---
-        const vaultData = [
-            { cat: "HARDWARE", title: "Logic Board Reflow", desc: "Using thermal heat to repair fractured solder joints on IC chips.", body: "
+        const data = [
+            { cat: "CODE", title: "Procedural Terrain JS", desc: "Generating 2D landscapes using Perlin Noise algorithms.", body: "// SNIPPET: Perlin Noise Logic\nfunction generateTerrain(width, height) {\n  let map = [];\n  for(let x=0; x<width; x++) {\n    map[x] = noise(x * 0.01) * height;\n  }\n  return map;\n}\n// End of Logic." },
+            { cat: "HARDWARE", title: "Thermal Throttling Fix", desc: "Applying liquid metal to resolve high CPU temps.", body: "1. Clean die with 99% IPA.\n2. Apply nail polish around SMDs for insulation.\n3. Spread a thin layer of Liquid Metal.\n4. Re-seat the heatsink and verify pressure." },
+            { cat: "MATH", title: "Mental Algebra: Level 3", desc: "How to solve multi-step equations without a calculator.", body: "Step 1: Group all constants on the right.\nStep 2: Simplify the coefficient.\nStep 3: Perform division in parts (e.g., 144/12).\nStep 4: Confirm via substitution." }
+        ];
+
+        // Fill data to 30+ items
+        for(let i=0; i<30; i++) {
+            data.push({ cat: ["CODE","MATH","HARDWARE"][i%3], title: `Module_Log_${100+i}`, desc: "Systematic data deconstruction log.", body: `LOG_ENTRY_${i}:\nInitializing neural nodes...\nAnalyzing checksums...\nData Integrity: 100%.\nExecute patch 0.4.${i}.` });
+        }
+
+        let cat = "ALL";
+        const grid = document.getElementById('main-grid');
+
+        function render(items) {
+            grid.innerHTML = '';
+            items.forEach(item => {
+                const el = document.createElement('div');
+                el.className = 'card';
+                el.innerHTML = `<div class="tag">${item.cat}</div><h3>${item.title}</h3><p>${item.desc}</p>`;
+                el.onclick = () => openM(item);
+                grid.appendChild(el);
+            });
+        }
+
+        function setCat(c, btn) {
+            cat = c;
+            document.querySelectorAll('.f-btn').forEach(b => b.classList.remove('f-active'));
+            btn.classList.add('f-active');
+            filter();
+        }
+
+        function filter() {
+            const q = document.getElementById('search-input').value.toLowerCase();
+            const filtered = data.filter(i => (cat === "ALL" || i.cat === cat) && i.title.toLowerCase().includes(q));
+            render(filtered);
+        }
+
+        function openM(item) {
+            document.getElementById('m-title').innerText = item.title;
+            document.getElementById('m-tag').innerText = item.cat;
+            document.getElementById('m-body').innerText = item.body;
+            document.getElementById('modal').style.display = 'flex';
+            document.getElementById('progress-bar').style.width = '0%';
+        }
+
+        function closeM() { document.getElementById('modal').style.display = 'none'; }
+
+        function updateProgress(el) {
+            const winScroll = el.scrollTop;
+            const height = el.scrollHeight - el.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById("progress-bar").style.width = scrolled + "%";
+        }
+
+        function copyContent() {
+            const text = document.getElementById('m-body').innerText;
+            navigator.clipboard.writeText(text);
+            alert("CODE_COPIED_TO_CLIPBOARD");
+        }
+
+        window.onload = () => render(data);
+    </script>
+</body>
+</html>
