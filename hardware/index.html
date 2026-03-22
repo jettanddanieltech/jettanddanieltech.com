@@ -9,12 +9,12 @@
         body { background: var(--bg); color: #eee; font-family: var(--mono); margin: 0; padding: 20px; }
         
         nav { display: flex; justify-content: space-between; border-bottom: 1px solid var(--border); padding-bottom: 15px; margin-bottom: 30px; }
-        .back { color: #444; text-decoration: none; font-size: 0.7rem; }
+        .back { color: #444; text-decoration: none; font-size: 0.7rem; letter-spacing: 1px; }
         .back:hover { color: var(--cyan); }
 
         h2 { color: var(--cyan); font-size: 0.9rem; border-left: 3px solid var(--cyan); padding-left: 10px; margin: 40px 0 20px; text-transform: uppercase; letter-spacing: 2px; }
 
-        /* SECTION 1: PC BUILDER WITH PRICES */
+        /* SECTION 1: PC BUILDER */
         .pc-builder { background: var(--panel); border: 1px solid var(--border); padding: 20px; margin-bottom: 50px; }
         .comp-row { display: grid; grid-template-columns: 150px 1fr 200px 100px; gap: 15px; padding: 15px 0; border-bottom: 1px solid #111; align-items: center; }
         .comp-label { color: var(--cyan); font-size: 0.7rem; font-weight: 900; }
@@ -24,21 +24,21 @@
         .total-box { text-align: right; padding: 20px; font-size: 1.2rem; color: var(--cyan); border-top: 2px solid var(--border); margin-top: 10px; }
 
         /* SECTION 2: CUSTOM PHONE CASE BUILDER */
-        .case-builder-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; background: var(--panel); border: 1px solid var(--border); padding: 30px; }
-        .case-preview-area { display: flex; justify-content: center; align-items: center; background: #000; height: 400px; border: 1px dashed #222; position: relative; }
-        
-        /* The Visual Case */
-        #case-visual { 
-            width: 160px; height: 320px; border-radius: 25px; 
-            border: 8px solid #1a1a1a; transition: 0.5s; position: relative;
-            background-color: #333; box-shadow: 0 0 30px rgba(0,0,0,1);
-        }
-        .camera-bump { position: absolute; top: 20px; left: 20px; width: 60px; height: 60px; background: #111; border-radius: 10px; }
-        
-        .controls { display: flex; flex-direction: column; gap: 20px; }
-        .control-group label { display: block; color: #666; font-size: 0.6rem; margin-bottom: 8px; text-transform: uppercase; }
-        .color-btn { width: 30px; height: 30px; border: 1px solid #fff; cursor: pointer; display: inline-block; margin-right: 5px; }
+        .case-builder-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; background: var(--panel); border: 1px solid var(--border); padding: 30px; margin-bottom: 50px; }
+        .case-preview-area { display: flex; justify-content: center; align-items: center; background: #000; height: 350px; border: 1px dashed #222; }
+        #case-visual { width: 140px; height: 280px; border-radius: 20px; border: 6px solid #1a1a1a; transition: 0.5s; position: relative; background-color: #333; box-shadow: 0 0 20px rgba(0,210,255,0.1); }
+        .camera-bump { position: absolute; top: 15px; left: 15px; width: 50px; height: 50px; background: #111; border-radius: 8px; }
+        .color-btn { width: 30px; height: 30px; border: 1px solid #fff; cursor: pointer; display: inline-block; margin-right: 10px; border-radius: 50%; }
 
+        /* SECTION 3: PHONE BOXES */
+        .phone-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+        .phone-box { background: var(--panel); border: 1px solid var(--border); padding: 20px; position: relative; transition: 0.3s; }
+        .phone-box:hover { border-color: var(--cyan); transform: translateY(-5px); }
+        .phone-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px; border-bottom: 1px solid #111; padding-bottom: 10px; }
+        .phone-name { color: #fff; font-size: 0.8rem; font-weight: 900; }
+        .phone-price { color: #00ff41; font-size: 0.75rem; }
+        .phone-details { color: #666; font-size: 0.65rem; line-height: 1.6; }
+        .status-light { display: inline-block; width: 8px; height: 8px; background: var(--cyan); border-radius: 50%; margin-right: 5px; box-shadow: 0 0 5px var(--cyan); }
     </style>
 </head>
 <body>
@@ -47,61 +47,99 @@
         <a href="../" class="back">[ EXIT_TO_HUB ]</a>
     </nav>
 
-    <h2>1. PC_STATION_CONFIGURATOR</h2>
+    <h2>1. PC_STATION_BUILDER</h2>
     <div class="pc-builder">
         <div class="comp-row">
-            <div class="comp-label">CPU</div>
-            <div class="comp-desc">Logic processing unit.</div>
-            <select id="cpu" onchange="calcTotal()">
+            <div class="comp-label">PROCESSOR</div>
+            <div class="comp-desc">Core logic handling.</div>
+            <select id="cpu" onchange="updateTotal()">
                 <option value="599">i9-14900K - $599</option>
-                <option value="449">i7-14700K - $449</option>
                 <option value="699">Ryzen 9 7950X - $699</option>
+                <option value="449">i7-14700K - $449</option>
             </select>
-            <div class="price-tag">UNIT_LOCK</div>
         </div>
-
         <div class="comp-row">
-            <div class="comp-label">GPU</div>
-            <div class="comp-desc">Neural/Vector graphics.</div>
-            <select id="gpu" onchange="calcTotal()">
+            <div class="comp-label">GRAPHICS</div>
+            <div class="comp-desc">Vector & AI compute.</div>
+            <select id="gpu" onchange="updateTotal()">
                 <option value="1599">RTX 4090 - $1,599</option>
                 <option value="999">RTX 4080 Super - $999</option>
                 <option value="799">RTX 4070 Ti - $799</option>
             </select>
-            <div class="price-tag">UNIT_LOCK</div>
         </div>
-
-        <div class="total-box">
-            ESTIMATED_BUILD_COST: $<span id="total-price">2198</span>
-        </div>
+        <div class="total-box">SYSTEM_VALUE: $<span id="total-val">2198</span></div>
     </div>
 
     <h2>2. CUSTOM_CASE_FABRICATOR</h2>
     <div class="case-builder-grid">
         <div class="case-preview-area">
-            <div id="case-visual">
-                <div class="camera-bump"></div>
-                <div style="position:absolute; bottom:20px; width:100; text-align:center; font-size:0.4rem; color:rgba(255,255,255,0.2); width:100%;">J&D_PROTOTYPE</div>
+            <div id="case-visual"><div class="camera-bump"></div></div>
+        </div>
+        <div class="case-controls">
+            <p style="font-size: 0.6rem; color: #444;">SELECT_MATERIAL_COLOR:</p>
+            <div class="color-btn" style="background: #00d2ff;" onclick="setCase('#00d2ff')"></div>
+            <div class="color-btn" style="background: #ff004c;" onclick="setCase('#ff004c')"></div>
+            <div class="color-btn" style="background: #ffffff;" onclick="setCase('#ffffff')"></div>
+            <div class="color-btn" style="background: #1a1a1a;" onclick="setCase('#1a1a1a')"></div>
+            <div style="margin-top: 30px; border-top: 1px solid #111; padding-top: 15px;">
+                <span style="font-size: 0.6rem; color: #555;">FABRICATION_STATUS: READY</span>
+            </div>
+        </div>
+    </div>
+
+    <h2>3. MOBILE_DIAGNOSTICS_UNITS</h2>
+    <div class="phone-grid">
+        <div class="phone-box">
+            <div class="phone-header">
+                <div class="phone-name">IPHONE_15_PRO_MAX</div>
+                <div class="phone-price">$1,199</div>
+            </div>
+            <div class="phone-details">
+                CHIP: A17 Pro (3nm Architecture)<br>
+                SCREEN: Super Retina XDR OLED<br>
+                BATTERY: 4441 mAh Li-ion<br>
+                <span class="status-light"></span> <span style="color:var(--cyan)">SYSTEM_STABLE</span>
             </div>
         </div>
 
-        <div class="controls">
-            <div class="control-group">
-                <label>Case Material Color</label>
-                <div class="color-btn" style="background: #00d2ff;" onclick="updateCase('#00d2ff')"></div>
-                <div class="color-btn" style="background: #ff004c;" onclick="updateCase('#ff004c')"></div>
-                <div class="color-btn" style="background: #ffffff;" onclick="updateCase('#ffffff')"></div>
-                <div class="color-btn" style="background: #1a1a1a;" onclick="updateCase('#1a1a1a')"></div>
+        <div class="phone-box">
+            <div class="phone-header">
+                <div class="phone-name">SAMSUNG_S24_ULTRA</div>
+                <div class="phone-price">$1,299</div>
             </div>
-
-            <div class="control-group">
-                <label>Texture Finish</label>
-                <select id="finish" onchange="updateFinish()">
-                    <option value="1">MATTE_INDUSTRIAL</option>
-                    <option value="0.5">GLOSS_CARBON</option>
-                    <option value="0.2">METALLIC_CORE</option>
-                </select>
+            <div class="phone-details">
+                CHIP: Snapdragon 8 Gen 3<br>
+                SCREEN: Dynamic AMOLED 2X<br>
+                BATTERY: 5000 mAh Li-ion<br>
+                <span class="status-light" style="background:#ff9500; box-shadow:0 0 5px #ff9500;"></span> <span style="color:#ff9500">THERMAL_WARNING</span>
             </div>
+        </div>
 
-            <div style="font-size: 0.6rem; color: #444; border-top: 1px solid #111; padding-top: 15px;">
-                FABRICATION_
+        <div class="phone-box">
+            <div class="phone-header">
+                <div class="phone-name">PIXEL_8_PRO</div>
+                <div class="phone-price">$999</div>
+            </div>
+            <div class="phone-details">
+                CHIP: Google Tensor G3<br>
+                SCREEN: LTPO OLED (2400 nits)<br>
+                BATTERY: 5050 mAh Li-ion<br>
+                <span class="status-light"></span> <span style="color:var(--cyan)">SYSTEM_STABLE</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function updateTotal() {
+            let cpu = parseInt(document.getElementById('cpu').value);
+            let gpu = parseInt(document.getElementById('gpu').value);
+            document.getElementById('total-val').innerText = (cpu + gpu).toLocaleString();
+        }
+        function setCase(color) {
+            let v = document.getElementById('case-visual');
+            v.style.backgroundColor = color;
+            v.style.boxShadow = `0 0 30px ${color}44`;
+        }
+    </script>
+</body>
+</html>
