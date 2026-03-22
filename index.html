@@ -7,7 +7,7 @@
     <style>
         :root {
             --bg: #000000;
-            --panel: rgba(5, 5, 5, 0.7);
+            --panel: rgba(5, 5, 5, 0.8);
             --cyan: #00d2ff;
             --border: rgba(0, 210, 255, 0.2);
             --mono: 'Courier New', monospace;
@@ -25,7 +25,7 @@
             flex-direction: column;
         }
 
-        /* VIDEO ENGINE */
+        /* VIDEO ENGINE - FIXED FOR hub-loop.mp4 */
         .video-background {
             position: fixed;
             top: 0;
@@ -34,6 +34,7 @@
             height: 100vh;
             z-index: -2;
             overflow: hidden;
+            background: #000;
         }
 
         .video-background video {
@@ -42,42 +43,45 @@
             left: 50%;
             min-width: 100%;
             min-height: 100%;
-            transform: translate(-50%, -50%) scale(1.6);
+            /* ZOOM: 1.5x to hide watermarks and center the hardware */
+            transform: translate(-50%, -50%) scale(1.5);
             object-fit: cover;
             filter: brightness(0.5) contrast(1.1);
         }
 
+        /* DARK VIGNETTE OVERLAY */
         .overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle, rgba(0,0,0,0) 30%, rgba(0,0,0,0.8) 100%);
+            background: radial-gradient(circle, rgba(0,0,0,0) 30%, rgba(0,0,0,0.9) 100%);
             z-index: -1;
             pointer-events: none;
         }
 
+        /* TOP NAVIGATION */
         nav {
             background: var(--panel);
             border-bottom: 1px solid var(--border);
-            padding: 25px 60px;
+            padding: 25px 50px;
             display: flex;
             justify-content: flex-end; 
             align-items: center;
             z-index: 100;
-            backdrop-filter: blur(15px);
+            backdrop-filter: blur(12px);
         }
 
         .nav-links {
             display: flex;
-            gap: 40px;
+            gap: 35px;
         }
 
         .nav-links a {
-            color: #777;
+            color: #666;
             text-decoration: none;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             letter-spacing: 3px;
             text-transform: uppercase;
             transition: all 0.4s ease;
@@ -86,25 +90,28 @@
         .nav-links a:hover {
             color: var(--cyan);
             text-shadow: 0 0 10px var(--cyan);
+            transform: translateY(-1px);
         }
 
+        /* CENTER AREA */
         .hero {
             flex: 1;
             position: relative;
             z-index: 1;
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-start;
             align-items: flex-end;
-            padding: 40px;
+            padding: 50px;
         }
 
         .system-status {
             font-size: 10px;
             color: var(--cyan);
-            opacity: 0.6;
+            opacity: 0.5;
             letter-spacing: 2px;
-            border-left: 2px solid var(--cyan);
-            padding-left: 15px;
+            line-height: 1.8;
+            border-left: 1px solid var(--cyan);
+            padding-left: 20px;
         }
     </style>
 </head>
@@ -112,8 +119,8 @@
 
     <div class="video-background">
         <video autoplay muted loop playsinline>
-            <source src="ezgif-7f4d2e4d9a85c17d-ezgif.com-reverse-video.mp4" type="video/mp4">
-            Your browser does not support the video tag.
+            <source src="hub-loop.mp4" type="video/mp4">
+            Video load error. Check file location.
         </video>
     </div>
 
@@ -121,19 +128,19 @@
 
     <nav>
         <div class="nav-links">
-            <a href="#hardware">HARDWARE</a>
-            <a href="#software">SOFTWARE</a>
-            <a href="#techy">TECHY</a>
-            <a href="#dictionary">DICTIONARY</a>
-            <a href="#tutorials">TUTORIALS</a>
+            <a href="hardware">HARDWARE</a>
+            <a href="software">SOFTWARE</a>
+            <a href="techy">TECHY</a>
+            <a href="dictionary">DICTIONARY</a>
+            <a href="tutorials">TUTORIALS</a>
         </div>
     </nav>
 
     <div class="hero">
         <div class="system-status">
-            SYSTEM_OVERRIDE: ENABLED<br>
-            NETWORK_STATUS: ENCRYPTED<br>
-            HUB_SYNC_ID: 7F4D-01
+            J&D_CORE: ONLINE<br>
+            HUB_SYNC: ENCRYPTED<br>
+            LOCAL_TIME: 14:50:59
         </div>
     </div>
 
