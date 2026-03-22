@@ -1,99 +1,107 @@
-<div class="pg-label">// HARDWARE_DEPT_v13</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J&D TECH // HARDWARE_ENG</title>
+    <style>
+        :root { --bg: #020202; --panel: #080808; --cyan: #00d2ff; --border: #151515; --mono: 'Courier New', monospace; }
+        body { background: var(--bg); color: #eee; font-family: var(--mono); margin: 0; padding: 20px; }
+        
+        nav { display: flex; justify-content: space-between; border-bottom: 1px solid var(--border); padding-bottom: 15px; margin-bottom: 30px; }
+        .back { color: #444; text-decoration: none; font-size: 0.7rem; }
+        .back:hover { color: var(--cyan); }
 
-<div class="section-label">> MODERN_ULTRA_SERIES [2023-2026]</div>
-<div class="box-grid">
-    <div class="box-card" style="border-top-color: #00ffaa;">
-        <h3>iP17_PRO_MAX_GEN6</h3>
-        <div class="price">$249.00</div>
-        <button class="order-btn" onclick="alert('iP17 Pro Max Module Added')">ORDER_KIT</button>
-    </div>
-    <div class="box-card">
-        <h3>iP16_PRO_DISPLAY</h3>
-        <div class="price">$219.00</div>
-        <button class="order-btn" onclick="alert('iP16 Pro Module Added')">ORDER_KIT</button>
-    </div>
-    <div class="box-card" style="border-top-color: #fff;">
-        <h3>S26_ULTRA_CORE</h3>
-        <div class="price">$255.00</div>
-        <button class="order-btn" onclick="alert('S26 Ultra Module Added')">ORDER_KIT</button>
-    </div>
-    <div class="box-card" style="border-top-color: #fff;">
-        <h3>S25_ULTRA_DISP</h3>
-        <div class="price">$235.00</div>
-        <button class="order-btn" onclick="alert('S25 Ultra Module Added')">ORDER_KIT</button>
-    </div>
-</div>
+        h2 { color: var(--cyan); font-size: 0.9rem; border-left: 3px solid var(--cyan); padding-left: 10px; margin: 40px 0 20px; text-transform: uppercase; letter-spacing: 2px; }
 
-<div class="section-label" style="margin-top:40px;">> LEGACY_CLASSIC_SERIES [iP13-iP17]</div>
-<div class="box-grid">
-    <div class="box-card" style="border-top-color: #555;">
-        <h3>iP13_RETINA_BOX</h3>
-        <div class="price">$129.00</div>
-        <button class="order-btn" onclick="alert('iP13 Legacy Added')">ORDER_KIT</button>
-    </div>
-    <div class="box-card" style="border-top-color: #555;">
-        <h3>iP14_RETINA_BOX</h3>
-        <div class="price">$149.00</div>
-        <button class="order-btn" onclick="alert('iP14 Legacy Added')">ORDER_KIT</button>
-    </div>
-    <div class="box-card" style="border-top-color: #555;">
-        <h3>iP15_RETINA_BOX</h3>
-        <div class="price">$169.00</div>
-        <button class="order-btn" onclick="alert('iP15 Legacy Added')">ORDER_KIT</button>
-    </div>
-    <div class="box-card" style="border-top-color: #555;">
-        <h3>iP16_RETINA_BOX</h3>
-        <div class="price">$189.00</div>
-        <button class="order-btn" onclick="alert('iP16 Legacy Added')">ORDER_KIT</button>
-    </div>
-</div>
+        /* SECTION 1: PC BUILDER WITH PRICES */
+        .pc-builder { background: var(--panel); border: 1px solid var(--border); padding: 20px; margin-bottom: 50px; }
+        .comp-row { display: grid; grid-template-columns: 150px 1fr 200px 100px; gap: 15px; padding: 15px 0; border-bottom: 1px solid #111; align-items: center; }
+        .comp-label { color: var(--cyan); font-size: 0.7rem; font-weight: 900; }
+        .comp-desc { color: #555; font-size: 0.6rem; }
+        select { background: #000; border: 1px solid #333; color: #fff; font-family: var(--mono); font-size: 0.7rem; padding: 5px; outline: none; width: 100%; }
+        .price-tag { color: #00ff41; font-size: 0.7rem; text-align: right; }
+        .total-box { text-align: right; padding: 20px; font-size: 1.2rem; color: var(--cyan); border-top: 2px solid var(--border); margin-top: 10px; }
 
-<div class="pg-label" style="margin-top: 50px;">// CUSTOM_PC_BUILDER</div>
-<div class="pc-panel">
-    <div class="section-label" style="margin-top: 0; color: #444;">[ CHASSIS_SELECTION ]</div>
-    <select id="pc-case" class="terminal-select" onchange="updatePCBuild()">
-        <option value="0">-- SELECT CASE TYPE --</option>
-        <option value="180">STEALTH_MID_TOWER ($180)</option>
-        <option value="290">HYTE_Y70_PANO ($290)</option>
-        <option value="450">LAB_GRADE_OPEN_AIR ($450)</option>
-    </select>
+        /* SECTION 2: CUSTOM PHONE CASE BUILDER */
+        .case-builder-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; background: var(--panel); border: 1px solid var(--border); padding: 30px; }
+        .case-preview-area { display: flex; justify-content: center; align-items: center; background: #000; height: 400px; border: 1px dashed #222; position: relative; }
+        
+        /* The Visual Case */
+        #case-visual { 
+            width: 160px; height: 320px; border-radius: 25px; 
+            border: 8px solid #1a1a1a; transition: 0.5s; position: relative;
+            background-color: #333; box-shadow: 0 0 30px rgba(0,0,0,1);
+        }
+        .camera-bump { position: absolute; top: 20px; left: 20px; width: 60px; height: 60px; background: #111; border-radius: 10px; }
+        
+        .controls { display: flex; flex-direction: column; gap: 20px; }
+        .control-group label { display: block; color: #666; font-size: 0.6rem; margin-bottom: 8px; text-transform: uppercase; }
+        .color-btn { width: 30px; height: 30px; border: 1px solid #fff; cursor: pointer; display: inline-block; margin-right: 5px; }
 
-    <div class="section-label" style="color: #444;">[ THERMAL_MGMT ]</div>
-    <div class="opt-row">
-        <button class="opt-btn" onclick="setPCPart('cool', 60, this)">AIR_FLOW</button>
-        <button class="opt-btn" onclick="setPCPart('cool', 190, this)">360mm_AIO</button>
-        <button class="opt-btn" onclick="setPCPart('cool', 500, this)">HARD_TUBING</button>
+    </style>
+</head>
+<body>
+    <nav>
+        <span style="color:var(--cyan)">// HARDWARE_ENGINEERING_DEPT</span>
+        <a href="../" class="back">[ EXIT_TO_HUB ]</a>
+    </nav>
+
+    <h2>1. PC_STATION_CONFIGURATOR</h2>
+    <div class="pc-builder">
+        <div class="comp-row">
+            <div class="comp-label">CPU</div>
+            <div class="comp-desc">Logic processing unit.</div>
+            <select id="cpu" onchange="calcTotal()">
+                <option value="599">i9-14900K - $599</option>
+                <option value="449">i7-14700K - $449</option>
+                <option value="699">Ryzen 9 7950X - $699</option>
+            </select>
+            <div class="price-tag">UNIT_LOCK</div>
+        </div>
+
+        <div class="comp-row">
+            <div class="comp-label">GPU</div>
+            <div class="comp-desc">Neural/Vector graphics.</div>
+            <select id="gpu" onchange="calcTotal()">
+                <option value="1599">RTX 4090 - $1,599</option>
+                <option value="999">RTX 4080 Super - $999</option>
+                <option value="799">RTX 4070 Ti - $799</option>
+            </select>
+            <div class="price-tag">UNIT_LOCK</div>
+        </div>
+
+        <div class="total-box">
+            ESTIMATED_BUILD_COST: $<span id="total-price">2198</span>
+        </div>
     </div>
 
-    <div style="border-top: 1px solid #111; padding-top: 20px; display: flex; justify-content: space-between; align-items: center;">
-        <span style="font-size: 0.6rem; letter-spacing: 1px;">TOTAL_BUILD_EST:</span>
-        <span id="pc-total-display" style="color: var(--pink); font-weight: 900; font-size: 1.1rem;">$0.00</span>
-    </div>
-    <button class="order-btn" style="margin-top: 20px; background: var(--pink); color: #fff;" onclick="alert('PC Quote Sent to J&D Admin')">INITIATE_BUILD</button>
-</div>
+    <h2>2. CUSTOM_CASE_FABRICATOR</h2>
+    <div class="case-builder-grid">
+        <div class="case-preview-area">
+            <div id="case-visual">
+                <div class="camera-bump"></div>
+                <div style="position:absolute; bottom:20px; width:100; text-align:center; font-size:0.4rem; color:rgba(255,255,255,0.2); width:100%;">J&D_PROTOTYPE</div>
+            </div>
+        </div>
 
-<style>
-    .box-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-    .box-card { background: var(--panel); border: 1px solid var(--border); padding: 12px; border-top: 2px solid var(--cyan); }
-    .box-card h3 { font-size: 0.5rem; margin: 0 0 8px; height: 25px; color: #eee; }
-    .price { color: var(--cyan); font-weight: 900; font-size: 0.8rem; margin-bottom: 12px; }
-    
-    .pc-panel { background: var(--panel); border: 1px solid var(--border); padding: 20px; border-left: 3px solid var(--pink); }
-    .terminal-select { width: 100%; background: #050505; border: 1px solid #222; color: #fff; padding: 12px; font-family: inherit; font-size: 0.6rem; margin-bottom: 20px; }
-    .opt-row { display: flex; gap: 8px; margin-bottom: 20px; }
-    .opt-btn { flex: 1; background: transparent; border: 1px solid #222; color: #444; padding: 10px; font-size: 0.45rem; font-family: inherit; cursor: pointer; }
-    .opt-btn.active { border-color: var(--pink); color: var(--pink); background: rgba(255, 0, 85, 0.05); }
-    
-    .order-btn { width: 100%; background: #fff; border: none; padding: 10px; font-family: inherit; font-size: 0.5rem; font-weight: 900; cursor: pointer; }
-</style>
+        <div class="controls">
+            <div class="control-group">
+                <label>Case Material Color</label>
+                <div class="color-btn" style="background: #00d2ff;" onclick="updateCase('#00d2ff')"></div>
+                <div class="color-btn" style="background: #ff004c;" onclick="updateCase('#ff004c')"></div>
+                <div class="color-btn" style="background: #ffffff;" onclick="updateCase('#ffffff')"></div>
+                <div class="color-btn" style="background: #1a1a1a;" onclick="updateCase('#1a1a1a')"></div>
+            </div>
 
-<script>
-    let hwCase = 0; let hwCool = 0;
-    function updatePCBuild() { hwCase = parseInt(document.getElementById('pc-case').value) || 0; renderTotal(); }
-    function setPCPart(type, price, btn) {
-        hwCool = price;
-        btn.parentElement.querySelectorAll('.opt-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active'); renderTotal();
-    }
-    function renderTotal() { document.getElementById('pc-total-display').innerText = '$' + (hwCase + hwCool) + '.00'; }
-</script>
+            <div class="control-group">
+                <label>Texture Finish</label>
+                <select id="finish" onchange="updateFinish()">
+                    <option value="1">MATTE_INDUSTRIAL</option>
+                    <option value="0.5">GLOSS_CARBON</option>
+                    <option value="0.2">METALLIC_CORE</option>
+                </select>
+            </div>
+
+            <div style="font-size: 0.6rem; color: #444; border-top: 1px solid #111; padding-top: 15px;">
+                FABRICATION_
